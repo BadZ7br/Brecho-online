@@ -1,0 +1,255 @@
+<!DOCTYPE html><html class="dark" lang="pt-br" style=""><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CORRE BRECHÓ | ENTRAR NO CORRE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb59e",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1d29",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#ffb59e",
+                        "on-secondary-fixed": "#3a0b00",
+                        "on-tertiary-container": "#556774",
+                        "on-secondary": "#5e1700",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b6c9d8",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-surface": "#e5e2e1",
+                        "surface-tint": "#abd600",
+                        "inverse-primary": "#506600",
+                        "primary-fixed": "#c3f400",
+                        "on-primary-container": "#556d00",
+                        "on-secondary-fixed-variant": "#852400",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "primary-fixed-dim": "#abd600",
+                        "inverse-on-surface": "#313030",
+                        "surface": "#131313",
+                        "secondary-container": "#ff571a",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#161e00",
+                        "tertiary-fixed": "#d2e5f5",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary": "#ffffff",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-surface-variant": "#c4c9ac",
+                        "primary-container": "#c3f400",
+                        "on-primary": "#283500",
+                        "surface-variant": "#353534",
+                        "on-tertiary": "#21323e",
+                        "surface-bright": "#393939",
+                        "tertiary-container": "#d2e5f5",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#521300",
+                        "outline-variant": "#444933",
+                        "outline": "#8e9379",
+                        "background": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "section-gap": "80px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Anton"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-xl": ["Anton"],
+                        "label-mono": ["Space Mono"],
+                        "title-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Anton"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "48px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "display-xl": ["84px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    </head>
+    <body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+        <div class="grain-overlay"></div>
+        <!-- Main Container: Split Screen Layout -->
+        <main class="flex min-h-screen flex-col md:flex-row relative">
+        <!-- Left Side: Visual/Branding (The "Wheatpaste" editorial style) -->
+            <section class="hidden md:flex md:w-1/2 bg-surface-container relative overflow-hidden items-center justify-center concrete-texture">
+            <!-- Background Image with Filter -->
+             <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity">
+                <div class="w-full h-full bg-cover bg-center" data-alt="A gritty urban scene of a Brazilian alleyway at dusk, featuring dark concrete walls covered in vibrant graffiti, wheatpaste posters for a fashion brand, and low-key cinematic lighting. The atmosphere is raw and industrial with high-contrast shadows and a neon green atmospheric glow reflecting off puddles." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDKZA1notj-bW6mMFkvyS6uQRwDqyCUJ4CSVCl1kzfwSq8jJZmbp99xqitbFWbHMvuMvYzZw1i4_ifwqJ1je-AocXMC7fzRB-SkEk10TQeEweIcnur0Fum6ntsJ46Bkym8nQQCxFAcObXMQDRxXprRRsxnKqGiAuV2T9HedW0OR7kfBHssQ97YZ3kqWckKfwrLbsYn5AEOV-IUnFf0vfZUR9QxCy5FWzBHBeAkkv_Fq5ObE9aeLMI8eOdiA4wH7f0m6pUbEFE19V4FP&quot;);"></div>
+            </div>
+            <!-- Kinetic Elements / Stickers -->
+             <div class="absolute top-10 left-10 sticker-rotate-1 z-20 bg-primary-container text-on-primary-container px-4 py-2 font-label-mono text-label-mono uppercase shadow-md animate-drift">
+                Drop #042</div>
+                <div class="absolute bottom-20 right-10 sticker-rotate-2 z-20 bg-secondary-container text-on-secondary-container px-6 py-2 font-headline-lg text-headline-lg uppercase border-2 border-black">
+                STREETWEAR
+            </div>
+            <!-- Center Brand Anchor -->
+             <div class="relative z-10 text-center px-margin-desktop">
+                <img src="https://lh3.googleusercontent.com/aida/AP1WRLuQV9uoVcreNsnMZkmaIsc5U7eo2CGe8N_LFxx_x-BJpljVq6L2paFP2_wzVdkDMZHl5No8GZK1pmMCdWr8ARTpt4x_MMZVve_BX-neCdeKogQV7J66mH57zb37xb6_Fh41Cto6Dn8yA_D9F4-GMcFX9Gd0Q2-NnJDRgS7zRuo79QfpBTf22ybuU-KQ_CaaRe2CxpqYO58v45M4C4hBIvIrTT7WWMxeSbv6QA3rITi1mDRj3Xpbh7xjK2k" alt="CORRE BRECHÓ" class="h-12 w-auto object-contain">
+                <p class="font-label-mono text-label-mono text-primary-fixed-dim uppercase tracking-widest bg-surface/80 inline-block px-4 py-1">CULtura de rua, com peças selecionadas</p>
+                <div class="mt-12 max-w-sm mx-auto">
+                    <p class="font-body-lg text-body-lg italic opacity-80 border-l-4 border-primary-container pl-6 text-left">
+                        "As ruas podem definir seu estilo,<div>vem pro Corre"</div></p><p class=""></p><p class=""></p><p class=""></p><p class=""></p>
+                    </div>
+                </div>
+                <!-- Spray Paint Detail (Absolute Decor) -->
+                 <div class="absolute bottom-[-50px] left-[-50px] w-64 h-64 bg-primary-container rounded-full blur-[120px] opacity-20"></div>
+                </section>
+                <!-- Right Side: Auth Forms -->
+                 <section class="flex-1 flex flex-col justify-center items-center px-margin-mobile md:px-margin-desktop bg-surface relative z-10">
+                    <!-- Mobile Header Logo (Visible only on small screens) -->
+                     <div class="md:hidden mb-12 text-center">
+                        <img src="https://lh3.googleusercontent.com/aida/AP1WRLuQV9uoVcreNsnMZkmaIsc5U7eo2CGe8N_LFxx_x-BJpljVq6L2paFP2_wzVdkDMZHl5No8GZK1pmMCdWr8ARTpt4x_MMZVve_BX-neCdeKogQV7J66mH57zb37xb6_Fh41Cto6Dn8yA_D9F4-GMcFX9Gd0Q2-NnJDRgS7zRuo79QfpBTf22ybuU-KQ_CaaRe2CxpqYO58v45M4C4hBIvIrTT7WWMxeSbv6QA3rITi1mDRj3Xpbh7xjK2k" alt="CORRE BRECHÓ" class="h-12 w-auto object-contain">
+                        <p class="font-label-mono text-label-mono text-primary-container uppercase">Entre para o corre</p>
+                    </div>
+                    <!-- Auth Card / Container -->
+                     <div class="w-full max-w-md bg-surface-container-high p-8 md:p-12 border-2 border-outline-variant relative">
+                        <!-- Toggle Tabs (Simulated) -->
+                         <div class="flex gap-4 mb-10 border-b border-outline-variant pb-2">
+                            <button class="font-label-mono text-label-mono uppercase transition-colors text-primary border-b-2 border-primary-container pb-2" id="tab-login" onclick="toggleAuth('login')">
+                        ENTRAR NO CORRE
+                    </button>
+                    <button class="font-label-mono text-label-mono uppercase transition-colors text-on-surface-variant hover:text-primary pb-2" id="tab-register" onclick="toggleAuth('register')">
+                        CRIAR CONTA
+                    </button>
+                </div>
+                <!-- Login Form -->
+                 <form class="space-y-6" id="form-login">
+                    <div>
+                        <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
+                        <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30" placeholder="seu@corre.com" type="email">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block">Senha</label>
+                            <a class="font-label-mono text-[10px] uppercase text-primary-container hover:underline" href="#">Esqueci a senha</a>
+                        </div>
+                        <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30" placeholder="••••••••" type="password">
+                    </div>
+                    <div class="pt-4">
+                        <button class="w-full bg-primary-container text-on-primary-container font-headline-lg text-[24px] py-4 uppercase hover:bg-secondary-container hover:text-on-secondary-container active:scale-95 transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+                            <span class="">ENTRAR</span>
+                            <span class="material-symbols-outlined">bolt</span>
+                        </button>
+                    </div>
+                </form>
+                <!-- Registration Form (Hidden by default) -->
+                 <form class="space-y-6 hidden" id="form-register">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome</label>
+                            <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all" type="text">
+                        </div>
+                        <div>
+                            <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Tag/Nick</label>
+                            <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all" type="text">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
+                        <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all" type="email">
+                    </div>
+                    <div>
+                        <label class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Senha</label>
+                        <input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all" type="password">
+                    </div>
+                    <div class="pt-4">
+                        <button class="w-full bg-primary-container text-on-primary-container font-headline-lg text-[24px] py-4 uppercase hover:bg-secondary-container hover:text-on-secondary-container active:scale-95 transition-all duration-200" type="submit">
+                            CRIAR CONTA
+                        </button>
+                    </div>
+                </form>
+                <!-- Social Auth -->
+                <!-- Footer Text -->
+                 <p class="mt-10 text-center font-body-sm text-body-sm text-on-surface-variant">
+                    Ao entrar, você concorda com nossos <br>
+                    <a class="underline hover:text-primary transition-colors" href="#">Termos de Serviço</a> e 
+                    <a class="underline hover:text-primary transition-colors" href="#">Políticas de Uso</a>.
+                </p>
+                <!-- Corner Accent -->
+                 <div class="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-primary-container"></div>
+                </div>
+                <!-- Background Floating Text (Atmospheric) -->
+            </section>
+        </main>
+        <!-- Simple Footer for Legal/Copyright -->
+         <footer class="bg-surface-container-lowest py-8 px-margin-mobile md:px-margin-desktop border-t-4 border-primary flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="font-label-mono text-label-mono text-on-surface-variant"><div class="flex items-center gap-2"><span class="">© 2026</span><img src="https://lh3.googleusercontent.com/aida/AP1WRLuQV9uoVcreNsnMZkmaIsc5U7eo2CGe8N_LFxx_x-BJpljVq6L2paFP2_wzVdkDMZHl5No8GZK1pmMCdWr8ARTpt4x_MMZVve_BX-neCdeKogQV7J66mH57zb37xb6_Fh41Cto6Dn8yA_D9F4-GMcFX9Gd0Q2-NnJDRgS7zRuo79QfpBTf22ybuU-KQ_CaaRe2CxpqYO58v45M4C4hBIvIrTT7WWMxeSbv6QA3rITi1mDRj3Xpbh7xjK2k" alt="CORRE BRECHÓ" class="h-16 w-auto object-contain mb-4"><span class="">- CULTURA DE RUA</span></div></span>
+            <div class="flex gap-6 font-label-mono text-label-mono uppercase">
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Newsletter</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Suporte</a>
+            </div>
+        </footer>
+        <script>
+        function toggleAuth(type) {
+            const loginForm = document.getElementById('form-login');
+            const registerForm = document.getElementById('form-register');
+            const tabLogin = document.getElementById('tab-login');
+            const tabRegister = document.getElementById('tab-register');
+            if (type === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                tabLogin.classList.add('text-primary', 'border-b-2', 'border-primary-container');
+                tabLogin.classList.remove('text-on-surface-variant');
+                tabRegister.classList.remove('text-primary', 'border-b-2', 'border-primary-container');
+                tabRegister.classList.add('text-on-surface-variant');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                tabRegister.classList.add('text-primary', 'border-b-2', 'border-primary-container');
+                tabRegister.classList.remove('text-on-surface-variant');
+                tabLogin.classList.remove('text-primary', 'border-b-2', 'border-primary-container');
+                tabLogin.classList.add('text-on-surface-variant');
+            }
+        }
+        // Form submission micro-interaction
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                const originalContent = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span>';
+                setTimeout(() => {
+                    btn.innerHTML = 'SUCESSO';
+                    btn.classList.replace('bg-primary-container', 'bg-white');
+                    setTimeout(() => {
+                        btn.innerHTML = originalContent;
+                        btn.classList.replace('bg-white', 'bg-primary-container');
+                        btn.disabled = false;
+                    }, 1500);
+                }, 2000);
+            });
+        });
+</script>
+</body></html>
