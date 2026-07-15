@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>CORRE BRECHÓ - SEU CARRINHO</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Use the predifined Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb59e",
+            "error": "#ffb4ab",
+            "surface-container-low": "#1c1b1b",
+            "primary": "#ffffff",
+            "on-tertiary-fixed": "#0b1d29",
+            "surface-container-high": "#2a2a2a",
+            "secondary": "#ffb59e",
+            "on-secondary-fixed": "#3a0b00",
+            "on-tertiary-container": "#556774",
+            "on-secondary": "#5e1700",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#b6c9d8",
+            "on-primary-fixed-variant": "#3c4d00",
+            "on-surface": "#e5e2e1",
+            "surface-tint": "#abd600",
+            "inverse-primary": "#506600",
+            "primary-fixed": "#c3f400",
+            "on-primary-container": "#556d00",
+            "on-secondary-fixed-variant": "#852400",
+            "on-tertiary-fixed-variant": "#374956",
+            "primary-fixed-dim": "#abd600",
+            "inverse-on-surface": "#313030",
+            "surface": "#131313",
+            "secondary-container": "#ff571a",
+            "on-error": "#690005",
+            "on-primary-fixed": "#161e00",
+            "tertiary-fixed": "#d2e5f5",
+            "on-background": "#e5e2e1",
+            "surface-container": "#201f1f",
+            "surface-container-lowest": "#0e0e0e",
+            "tertiary": "#ffffff",
+            "inverse-surface": "#e5e2e1",
+            "secondary-fixed": "#ffdbd0",
+            "on-surface-variant": "#c4c9ac",
+            "primary-container": "#c3f400",
+            "on-primary": "#283500",
+            "surface-variant": "#353534",
+            "on-tertiary": "#21323e",
+            "surface-bright": "#393939",
+            "tertiary-container": "#d2e5f5",
+            "surface-container-highest": "#353534",
+            "surface-dim": "#131313",
+            "error-container": "#93000a",
+            "on-secondary-container": "#521300",
+            "outline-variant": "#444933",
+            "outline": "#8e9379",
+            "background": "#131313"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "unit": "4px",
+            "section-gap": "80px",
+            "margin-desktop": "48px",
+            "gutter": "16px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Anton"],
+            "body-lg": ["Hanken Grotesk"],
+            "display-xl": ["Anton"],
+            "label-mono": ["Space Mono"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Anton"],
+            "body-sm": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "headline-lg": ["48px", { "lineHeight": "48px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "display-xl": ["84px", { "lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "label-mono": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["36px", { "lineHeight": "36px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-lg overflow-x-hidden">
+
+  <div class="grain-overlay"></div>
+
+  <!-- TopNavBar -->
+  <nav class="bg-surface border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0">
+    <div class="h-12">
+      <img src="https://lh3.googleusercontent.com/aida/AP1WRLuNclw_7rrAWHvkGG0oAn7xEMxJshuvmDx1MOQs2WmEp0vEDQad6IGmrGUAflHHGlVF_uHt8a5Hisk3O2HeTapdj1jingK9Z6ZXYVUsoQu6OdtDE3_v2OboaBDTEE_ymKQySuFGl064LhuticJ41gQE8_Ojbx52f25HsLFW_7K2Z_axeetQp3nJGulP89peyUuT2jvA9FNQ1MaNgrmadyCNtJzQbvPmk82eJWo-zY99jLfgXOJgG5Nc9w" alt="CORRE BRECHÓ" class="h-full object-contain">
+    </div>
+
+    <div class="hidden md:flex gap-8">
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Tamanhos Grandes</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Sneakers</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Acessórios</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Drops</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Arquivo</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <button class="active:scale-95 duration-100">
+        <span class="material-symbols-outlined text-primary">account_circle</span>
+      </button>
+      <button class="active:scale-95 duration-100 relative">
+        <span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+        <span class="absolute -top-2 -right-2 bg-secondary-container text-on-primary font-label-mono px-1.5 py-0.5 text-[10px] rounded-full">3</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="min-h-screen px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+      <!-- Cart Items Section -->
+      <div class="lg:col-span-8">
+        <header class="mb-12">
+          <h1 class="font-headline-lg md:text-headline-lg text-headline-lg-mobile uppercase mb-4">SEU CARRINHO</h1>
+          <p class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">[ 03 ITENS SELECIONADOS ]</p>
+        </header>
+
+        <div class="space-y-4">
+
+          <!-- Item 1 -->
+          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
+            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
+              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                data-alt="A gritty close-up of a vintage oversized black hoodie with faded graphic prints on the chest, hanging against a weathered concrete wall. The lighting is harsh and dramatic, emphasizing the fabric texture and urban street-style aesthetic. High contrast colors with deep blacks and sharp highlights."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuJsAumzVuIJmloRZV_om06oKSUlD6KZGzTl2udKPJ-pzTyTMljo03aIktechnzMe47xsk1Fto9Px-ma5lYwwnpu3UBkMMS3twuXaAxNws_FdZX2LfUAiQ6yHweP7S8GxY4GDqnIjXdp0mpn81o1rmAxhhtFp7t5q-VsYjNwuOSjQk1hu5Hc3yQagETQRRFGGqm8BXEhi7cnOpOGSbYruHuVrsLLfxWKast8X-IYWO2LtoTgCfFXhQ9bL3oJne1ZkJmJHaMCl9TPPM">
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">VINTAGE 90s BOX LOGO HOODIE</h3>
+                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: XL / COLOR: WASHED BLACK</p>
+                </div>
+                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
+                  <span class="material-symbols-outlined">close</span>
+                </button>
+              </div>
+              <div class="flex justify-between items-end mt-4">
+                <div class="flex items-center border border-outline">
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
+                  <span class="px-4 font-label-mono">01</span>
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
+                </div>
+                <span class="font-headline-lg text-title-md text-primary">R$ 289,00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
+            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
+              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                data-alt="A pair of well-worn premium leather combat boots with chunky rubber soles, positioned on a metal industrial grating. The lighting is moody and neo-punk, with orange and white light reflections. The shot is low-angle, capturing the rugged urban utility and raw energy of underground streetwear."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLlSKgYwReFKxj2sKVWx0lXNFlCJ51r55Crx75bJJUA19ysmwZQAOq2da5LFn91ZFPl8lXAF7_G6rh48V2bhCE7P2KzAlpEdNj0Dmu31-hkbpwpfsn3d25FqDvu6ND8x1NXmgfmnwqDFp9T9yNAZRJFuwkUkJIWgqfFeTHo6Mf7pUDEl6GARJNeaPJ99pbl6clnp5qaNe90_xKbR0q2U8KYfcVOyDKt21B0E0g-eLSiDlV6hgXJKswNDJTAbjiKLndQA-p5YYt_jDa">
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">URBAN COMBAT BOOTS</h3>
+                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: 42 / MATERIAL: DISTRESSED LEATHER</p>
+                </div>
+                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
+                  <span class="material-symbols-outlined">close</span>
+                </button>
+              </div>
+              <div class="flex justify-between items-end mt-4">
+                <div class="flex items-center border border-outline">
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
+                  <span class="px-4 font-label-mono">01</span>
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
+                </div>
+                <span class="font-headline-lg text-title-md text-primary">R$ 450,00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
+            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
+              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                data-alt="A macro shot of a chunky silver-colored chain necklace with an industrial padlock pendant, resting on a piece of torn black cardboard. The aesthetic is industrial brutalism, with sharp shadows and metallic glints against a dark, textured background. Neo-punk vibes with high impact contrast."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeaVporswuIG6HDcYBs9B4C-aUZ50xkULrmXzrttYhUsr_Moy6IOYMUlSNsB75yS0IsYjsIo0vcNKLkP0mcbzyKSMaAtHIxRpz2xalac03yqCV_2j_ZITGgeN80T357d3PCcf6NvgLAxyZnP-9VmtvYl-9kuZ1qODtJrdr4zWHSPqur6DRx0SmDzv1NdinE36ofzkfEbmDf5W0o3R139NjrnnWAZMcoGlkdUt5QzUN5sLx0H-YDvzbbkFd1ZvJV0rCHfAMwaATpT74">
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">PADLOCK HEAVY CHAIN</h3>
+                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: UNIQUE / ACCESORY</p>
+                </div>
+                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
+                  <span class="material-symbols-outlined">close</span>
+                </button>
+              </div>
+              <div class="flex justify-between items-end mt-4">
+                <div class="flex items-center border border-outline">
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
+                  <span class="px-4 font-label-mono">01</span>
+                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
+                </div>
+                <span class="font-headline-lg text-title-md text-primary">R$ 120,00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Summary Section -->
+      <div class="lg:col-span-4">
+        <div class="bg-surface-container p-8 border-t-4 border-primary sticky top-24">
+          <h2 class="font-headline-lg text-title-md uppercase mb-8 border-b-2 border-outline-variant pb-4">RESUMO</h2>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">SUBTOTAL</span>
+              <span class="font-headline-lg text-body-lg">R$ 859,00</span>
+            </div>
+
+            <div class="pt-4 border-t border-outline-variant">
+              <label class="font-label-mono text-label-mono text-on-surface-variant uppercase block mb-3">CALCULAR FRETE</label>
+              <div class="flex">
+                <input class="flex-grow bg-transparent border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-label-mono px-0 py-2 placeholder:text-surface-variant uppercase" placeholder="00000-000" type="text">
+                <button class="px-4 py-2 bg-primary text-background font-label-mono hover:bg-secondary-container transition-colors">OK</button>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-4">
+              <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">FRETE</span>
+              <span class="font-label-mono text-label-mono">--</span>
+            </div>
+          </div>
+
+          <div class="border-t-2 border-primary pt-6 mb-8">
+            <div class="flex justify-between items-center">
+              <span class="font-headline-lg text-title-md uppercase">TOTAL</span>
+              <span class="font-headline-lg text-headline-lg text-primary">R$ 859,00</span>
+            </div>
+          </div>
+
+          <button class="w-full bg-primary text-background py-6 font-headline-lg text-title-md uppercase tracking-widest hover:bg-secondary-container hover:text-white transition-all transform active:scale-95">FINALIZAR PEDIDO</button>
+
+          <div class="mt-8 flex items-center justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+            <img alt="PayPal" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0Bz5-1Sh6Q1IQYZidgJH_mRz_xy8xlzPALDx4Wv89MrKx7gouWFQnVKOVUE_iwyFzq-wHpkPJPpXIQaMztP87TQkxoLqkMoFwgoIU0S9UAEgdX8MwSM5auyTPzjKmweRoRIz3IrMFKW_kBaY7FAO9KMfvp0Gl2s0E_D3OG8--5HHrzODFstzqlnlmXR4CGnnmGX_6pvLGOOha31RIJBZk1kxJf7NiSdYo6QGeeH1j0K3CReGSKyD7gVLSti213HWpHyJF_ly8bSNu">
+            <img alt="Visa" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFWcvH70EMIIvf60PWTV1UtyZJ3wAPNUrPpxyHjBcF00F4Nk3dlRDm6wuPFnPRXe0JCXxQnWHws0OvIiuKwAHMXCZmcNQSZc0mR5a2GcKRf-Zn8Y67aLcBnJvnozWrRRrdvI7udtgv35HBfqOabx1bkhBoiOsPcPfk20yP_9-iCBFSAi4GwFmQaQzeRY9SuAX4khIP5DlNN6TsCyqpDxmPJnOvOoI3vFg84XGHnCpUEZBfoJjG5Anke9TLkuyZlto8X8AXvIQbAq-0">
+            <img alt="Mastercard" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi50OCd1RBiNW79ymY0b5crjn_6mhg6fU-xrpjNd07DCSZREqiIoBcDqfUPUgN90Dl51WgiDiMcVKu3kP7wevi6yNnDV5hTgXZKugnExz-LuoZVSrHBmLy-tMCKEgfVe0RlNor2D_hg6uCrIMUA2i3FtlARSjUnVoBltEjFSGNjhavmWRqlROX5jh9_DES6saXb1_uT1gMvWKoBietoCPQC9aJ2pkfSg073vtX0nYmlhtEAce7fnbT6WxtRhJVB6T-o8BSJanHsv5x">
+            <img alt="Pix" class="h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfdn_7fAV0x-EUxxKXKOxC5Q_tuGW40l5-vOUWu0iLvfZ-aYv7v78VV2BZTvk5EsJpyDA7kh-VlgFN1HhBodT5vRp_W5aghCD45Uv7oHwtpdWVnbG9xhTaEnFIUmR_vAJqWcNObYo6adCFDzWu8FNkMHXDPdtmHB0QK2BpIcb-XeqPeSMAdkd1V6i8hbwuwwwu13txQ4FH2cLQPH2S1uSbsjGQ9XuH7GnZQGO_fytbhL28fAxTWWfx05E5TWkih40loAWXiqczNz7w">
+          </div>
+        </div>
+
+        <!-- Special Component: The Wheatpaste -->
+        <div class="mt-8 p-6 bg-surface-container-highest border-2 border-dashed border-outline-variant relative overflow-hidden">
+          <div class="absolute -right-4 -top-4 sticker-badge bg-secondary-container text-white px-4 py-1 font-label-mono text-[10px]">EXCLUSIVE DROP</div>
+          <h4 class="font-headline-lg text-body-lg uppercase mb-2">PRECISA DE AJUDA?</h4>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Nosso estoque é limitado e rotativo. Itens no carrinho não garantem reserva até a finalização do pagamento.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-lowest border-t-4 border-primary grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap w-full">
+    <div class="md:col-span-1">
+      <div class="h-16 mb-6">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLuNclw_7rrAWHvkGG0oAn7xEMxJshuvmDx1MOQs2WmEp0vEDQad6IGmrGUAflHHGlVF_uHt8a5Hisk3O2HeTapdj1jingK9Z6ZXYVUsoQu6OdtDE3_v2OboaBDTEE_ymKQySuFGl064LhuticJ41gQE8_Ojbx52f25HsLFW_7K2Z_axeetQp3nJGulP89peyUuT2jvA9FNQ1MaNgrmadyCNtJzQbvPmk82eJWo-zY99jLfgXOJgG5Nc9w" alt="CORRE BRECHÓ" class="h-full object-contain">
+      </div>
+      <p class="font-body-sm text-on-surface-variant max-w-xs">Underground thrift and curated street style. Based in the concrete jungle.</p>
+    </div>
+
+    <div>
+      <h4 class="font-headline-lg text-title-md uppercase mb-4">SUPORTE</h4>
+      <ul class="space-y-2">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Boletim</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Envio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Devoluções</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-headline-lg text-title-md uppercase mb-4">LEGAL</h4>
+      <ul class="space-y-2">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Termos</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Privacidade</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Contato</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-headline-lg text-title-md uppercase mb-4">JUNTE-SE À EQUIPE</h4>
+      <div class="flex gap-4">
+        <a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+      </div>
+      <div class="mt-8 font-label-mono text-[10px] text-surface-variant uppercase">
+        © 2024 CORRE BRECHÓ - UNDERGROUND THRIFT
+      </div>
+    </div>
+  </footer>
+
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav class="flex md:hidden justify-around items-center w-full pb-safe fixed bottom-0 left-0 bg-surface-container-highest border-t-2 border-outline-variant z-50">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-4" href="#">
+      <span class="material-symbols-outlined">storefront</span>
+      <span class="font-label-mono text-[10px] mt-1">Loja</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-4" href="#">
+      <span class="material-symbols-outlined">bolt</span>
+      <span class="font-label-mono text-[10px] mt-1">Drops</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-4" href="#">
+      <span class="material-symbols-outlined">search</span>
+      <span class="font-label-mono text-[10px] mt-1">Buscar</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-primary text-on-primary p-4 scale-105" href="#">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+      <span class="font-label-mono text-[10px] mt-1">Carrinho</span>
+    </a>
+  </nav>
+
+  <script>
+    // Micro-interactions for quantity controls
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        if (this.innerText === '+' || this.innerText === '-') {
+          const span = this.parentElement.querySelector('span');
+          let val = parseInt(span.innerText);
+          if (this.innerText === '+') val++;
+          if (this.innerText === '-' && val > 1) val--;
+          span.innerText = val.toString().padStart(2, '0');
+        }
+      });
+    });
+
+    // Atmospheric parallax on scroll
+    window.addEventListener('scroll', () => {
+      const grain = document.querySelector('.grain-overlay');
+      grain.style.backgroundPosition = `${window.scrollY * 0.1}px ${window.scrollY * 0.1}px`;
+    });
+  </script>
+
+</body>
+</html>
