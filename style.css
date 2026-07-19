@@ -93,9 +93,27 @@ body {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.active-nav-link {
-    border-bottom: 4px solid #ffffff;
-    padding-bottom: 4px;
+/* Navegação do header: sublinhado animado ao passar o mouse (substitui a barra branca fixa) */
+.nav-link {
+    position: relative;
+    padding-bottom: 6px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #c3f400;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+    width: 100%;
 }
 
 /* Wheatpaste Effect */
@@ -166,7 +184,7 @@ body {
                 width: 220px;
                 opacity: 1;
                 padding: 0 44px 0 16px;
-                border-color: var(--tw-color-outline-variant, #444933);
+                border-color: var(--tw-color-outline-variant, #444929);
                 pointer-events: auto;
             }
             .animated-search-input.active:focus {
@@ -201,4 +219,14 @@ body {
                 outline-offset: 2px;
                 box-shadow: none !important;
                 border-color: #c3f400 !important;
+            }
+
+                 input, .input-focus-accent {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            input:focus, .input-focus-accent:focus,
+            input:focus-visible, .input-focus-accent:focus-visible {
+                outline: none !important;
+                box-shadow: none !important;
             }

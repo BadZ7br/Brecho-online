@@ -18,26 +18,26 @@
 <body class="bg-background text-on-background">
 
     <!-- TopNavBar -->
-    <header class="bg-surface border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0">
+    <header class="bg-surface bg-opacity-100 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0 transition-shadow duration-300 ease-in-out" style="background-color: #131313;">
         <a href="index.html" class="font-headline-lg text-primary uppercase tracking-tighter">
             <img src="img/screen.png" alt="CORRE BRECHÓ" class="h-12 w-auto object-contain">
         </a>
 
         <nav class="hidden md:flex space-x-8 items-center">
-            <a class="font-label-mono text-label-mono text-primary active-nav-link" href="#categorias">Oversized</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#categorias">Sneakers</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#categorias">Accessories</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#drops">Drops</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Archive</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out" href="#categorias">Oversized</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out" href="#categorias">Sneakers</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out" href="#categorias">Accessories</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out" href="#drops">Drops</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out" href="#">Archive</a>
         </nav>
 
         <div class="flex items-center space-x-6">
             <div class="relative flex items-center" id="searchWrapper">
                 <input type="text" id="animatedSearchInput" placeholder="Buscar..." class="animated-search-input font-body-sm bg-surface-container text-primary placeholder-on-surface-variant">
-                <button id="searchToggleBtn" class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100 relative z-10">search</button>
+                <button id="searchToggleBtn" class="material-symbols-outlined text-primary hover:text-secondary-container transition-all duration-300 ease-in-out active:scale-95 hover:scale-110 relative z-10">search</button>
             </div>
-            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100" href="carrinho.html">shopping_cart</a>
-            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100" href="login.html">account_circle</a>
+            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-all duration-300 ease-in-out active:scale-95 hover:scale-110" href="carrinho.html">shopping_cart</a>
+            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-all duration-300 ease-in-out active:scale-95 hover:scale-110" href="login.html">account_circle</a>
         </div>
     </header>
 
@@ -55,7 +55,7 @@
                     VISTA O QUE<br>NINGUÉM TEM
                 </h1>
                 <div class="flex justify-center">
-                    <button class="bg-[#c3f400] text-black font-headline-lg px-12 py-6 uppercase hover:bg-secondary-container transition-all duration-300 transform hover:-translate-y-1 brutal-shadow active:scale-95">compre agora</button>
+                    <a href="carrinho.html" class="bg-[#c3f400] text-black font-headline-lg px-12 py-6 uppercase hover:bg-secondary-container transition-all duration-300 transform hover:-translate-y-1 brutal-shadow active:scale-95 inline-block">compre agora</a>
                 </div>
             </div>
 
