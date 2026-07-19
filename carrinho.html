@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html class="dark" lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>CORRE BRECHÓ - SEU CARRINHO</title>
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <!-- Configuração do Tailwind compartilhada entre todas as páginas -->
@@ -19,29 +23,39 @@
   <div class="grain-overlay"></div>
 
   <!-- TopNavBar (igual às demais páginas) -->
-  <header class="bg-surface border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0">
+  <header
+    class="bg-surface border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0">
     <a href="index.html" class="font-headline-lg text-primary uppercase tracking-tighter">
       <img src="img/screen.png" alt="CORRE BRECHÓ" class="h-12 w-auto object-contain">
     </a>
 
     <nav class="hidden md:flex space-x-8 items-center">
-      <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="index.html#categorias">Oversized</a>
-      <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="index.html#categorias">Sneakers</a>
-      <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="index.html#categorias">Accessories</a>
-      <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="index.html#drops">Drops</a>
-      <a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Archive</a>
+      <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+        href="index.html#categorias">Oversized</a>
+      <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+        href="index.html#categorias">Sneakers</a>
+      <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+        href="index.html#categorias">Accessories</a>
+      <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+        href="index.html#drops">Drops</a>
+      <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+        href="index.html#drops">Archive</a>
     </nav>
-
     <div class="flex items-center space-x-6">
       <div class="relative flex items-center" id="searchWrapper">
-        <input type="text" id="animatedSearchInput" placeholder="Buscar..." class="animated-search-input font-body-sm bg-surface-container text-primary placeholder-on-surface-variant">
-        <button id="searchToggleBtn" class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100 relative z-10">search</button>
+        <input type="text" id="animatedSearchInput" placeholder="Buscar..."
+          class="animated-search-input font-body-sm bg-surface-container text-primary placeholder-on-surface-variant">
+        <button id="searchToggleBtn"
+          class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100 relative z-10">search</button>
       </div>
-      <a class="material-symbols-outlined text-primary active:scale-95 duration-100 relative" href="carrinho.html" aria-current="page">
+      <a class="material-symbols-outlined text-primary active:scale-95 duration-100 relative" href="carrinho.html"
+        aria-current="page">
         shopping_cart
-        <span class="absolute -top-2 -right-2 bg-secondary-container text-on-primary font-label-mono px-1.5 py-0.5 text-[10px] rounded-full">3</span>
+        <span data-cart-badge
+          class="hidden absolute -top-2 -right-2 bg-secondary-container text-on-primary font-label-mono px-1.5 py-0.5 text-[10px] rounded-full">0</span>
       </a>
-      <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100" href="login.html">account_circle</a>
+      <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors active:scale-95 duration-100"
+        href="login.html">account_circle</a>
     </div>
   </header>
 
@@ -53,145 +67,88 @@
       <div class="lg:col-span-8">
         <header class="mb-12">
           <h1 class="font-headline-lg md:text-headline-lg text-headline-lg-mobile uppercase mb-4">SEU CARRINHO</h1>
-          <p class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">[ 03 ITENS SELECIONADOS ]</p>
+          <p id="itemCountLabel"
+            class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">[ 00 ITENS
+            SELECIONADOS ]</p>
         </header>
 
-        <div class="space-y-4">
+        <div id="cartItemsContainer" class="space-y-4">
+          <!-- Itens renderizados via JS (cart.js + carrinho.js) -->
+        </div>
 
-          <!-- Item 1 -->
-          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
-            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
-              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                alt="Moletom vintage anos 90 com estampa desbotada no peito, estilo streetwear urbano."
-                src="img/produto-hoodie.png">
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">VINTAGE 90s BOX LOGO HOODIE</h3>
-                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: XL / COLOR: WASHED BLACK</p>
-                </div>
-                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </div>
-              <div class="flex justify-between items-end mt-4">
-                <div class="flex items-center border border-outline">
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
-                  <span class="px-4 font-label-mono">01</span>
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
-                </div>
-                <span class="font-headline-lg text-title-md text-primary">R$ 289,00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
-            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
-              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                alt="Coturno urbano de couro desgastado com sola grossa, estilo neo-punk industrial."
-                src="img/produto-botas.png">
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">URBAN COMBAT BOOTS</h3>
-                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: 42 / MATERIAL: DISTRESSED LEATHER</p>
-                </div>
-                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </div>
-              <div class="flex justify-between items-end mt-4">
-                <div class="flex items-center border border-outline">
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
-                  <span class="px-4 font-label-mono">01</span>
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
-                </div>
-                <span class="font-headline-lg text-title-md text-primary">R$ 450,00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300">
-            <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
-              <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                alt="Corrente prateada chunky com pingente de cadeado, estética industrial brutalista."
-                src="img/produto-corrente.png">
-            </div>
-            <div class="flex-grow flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">PADLOCK HEAVY CHAIN</h3>
-                  <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: UNIQUE / ACCESORY</p>
-                </div>
-                <button class="text-on-surface-variant hover:text-secondary-container transition-colors">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </div>
-              <div class="flex justify-between items-end mt-4">
-                <div class="flex items-center border border-outline">
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
-                  <span class="px-4 font-label-mono">01</span>
-                  <button class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
-                </div>
-                <span class="font-headline-lg text-title-md text-primary">R$ 120,00</span>
-              </div>
-            </div>
-          </div>
-
+        <!-- Estado vazio -->
+        <div id="emptyCartState"
+          class="hidden flex-col items-center justify-center text-center py-24 border-2 border-dashed border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-6xl mb-6 opacity-60">remove_shopping_cart</span>
+          <h2 class="font-headline-lg text-title-md uppercase mb-3">SEU CARRINHO ESTÁ VAZIO</h2>
+          <p class="font-body-sm text-on-surface-variant max-w-sm mb-8">Nenhuma peça selecionada ainda. Volte pra
+            vitrine e garanta o seu achado antes que o estoque rotativo esgote.</p>
+          <a href="index.html"
+            class="bg-primary text-background font-headline-lg px-10 py-4 uppercase tracking-widest hover:bg-secondary-container hover:text-white transition-all">VOLTAR
+            ÀS COMPRAS</a>
         </div>
       </div>
 
       <!-- Summary Section -->
       <div class="lg:col-span-4">
-        <div class="bg-surface-container p-8 border-t-4 border-primary sticky top-24">
-          <h2 class="font-headline-lg text-title-md uppercase mb-8 border-b-2 border-outline-variant pb-4">RESUMO</h2>
+        <div class="sticky top-24 space-y-8">
+          <div class="bg-surface-container p-8 border-t-4 border-primary">
+            <h2 class="font-headline-lg text-title-md uppercase mb-8 border-b-2 border-outline-variant pb-4">RESUMO</h2>
 
-          <div class="space-y-4 mb-8">
-            <div class="flex justify-between items-center">
-              <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">SUBTOTAL</span>
-              <span class="font-headline-lg text-body-lg">R$ 859,00</span>
+            <div class="space-y-4 mb-8">
+              <div class="flex justify-between items-center">
+                <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">SUBTOTAL</span>
+                <span id="subtotalValue" class="font-headline-lg text-body-lg">R$ 0,00</span>
+              </div>
+
+              <div class="pt-4 border-t border-outline-variant">
+                <label for="cepInput"
+                  class="font-label-mono text-label-mono text-on-surface-variant uppercase block mb-3">CALCULAR
+                  FRETE</label>
+                <div class="flex">
+                  <input
+                    class="flex-grow bg-transparent border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-label-mono px-0 py-2 placeholder:text-surface-variant uppercase"
+                    placeholder="00000-000" type="text" id="cepInput" inputmode="numeric" maxlength="9"
+                    autocomplete="postal-code">
+                  <button id="calcFreteBtn"
+                    class="px-4 py-2 bg-primary text-background font-label-mono hover:bg-secondary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">OK</button>
+                </div>
+                <p id="cepFeedback" class="font-label-mono text-[10px] uppercase mt-2 min-h-[14px]"></p>
+                <a href="https://buscacepinternet.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener"
+                  class="font-label-mono text-[10px] uppercase text-on-surface-variant underline hover:text-primary transition-colors">Não
+                  sei meu CEP</a>
+              </div>
+
+              <div class="flex justify-between items-center pt-4">
+                <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">FRETE</span>
+                <span id="freteValue" class="font-label-mono text-label-mono">--</span>
+              </div>
+              <p id="freteDetail" class="font-label-mono text-[10px] uppercase text-on-surface-variant text-right"></p>
             </div>
 
-            <div class="pt-4 border-t border-outline-variant">
-              <label class="font-label-mono text-label-mono text-on-surface-variant uppercase block mb-3">CALCULAR FRETE</label>
-              <div class="flex">
-                <input class="flex-grow bg-transparent border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-label-mono px-0 py-2 placeholder:text-surface-variant uppercase" placeholder="00000-000" type="text">
-                <button class="px-4 py-2 bg-primary text-background font-label-mono hover:bg-secondary-container transition-colors">OK</button>
+            <div class="border-t-2 border-primary pt-6 mb-8">
+              <div class="flex justify-between items-center">
+                <span class="font-headline-lg text-title-md uppercase">TOTAL</span>
+                <span id="totalValue" class="font-headline-lg text-headline-lg text-primary">R$ 0,00</span>
               </div>
             </div>
 
-            <div class="flex justify-between items-center pt-4">
-              <span class="font-label-mono text-label-mono text-on-surface-variant uppercase">FRETE</span>
-              <span class="font-label-mono text-label-mono">--</span>
-            </div>
+            <button id="finalizarBtn"
+              class="w-full bg-primary text-background py-6 font-headline-lg text-title-md uppercase tracking-widest hover:bg-secondary-container hover:text-white transition-all transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:text-background">FINALIZAR
+              PEDIDO</button>
+            <p id="finalizarFeedback" class="font-label-mono text-[10px] uppercase mt-3 text-center min-h-[14px]"></p>
+
           </div>
 
-          <div class="border-t-2 border-primary pt-6 mb-8">
-            <div class="flex justify-between items-center">
-              <span class="font-headline-lg text-title-md uppercase">TOTAL</span>
-              <span class="font-headline-lg text-headline-lg text-primary">R$ 859,00</span>
-            </div>
+          <!-- Special Component: The Wheatpaste -->
+          <div
+            class="mt-8 p-6 bg-surface-container-highest border-2 border-dashed border-outline-variant relative overflow-hidden">
+
+            <h4 class="font-headline-lg text-body-lg uppercase mb-2">PRECISA DE AJUDA?</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Nosso estoque é limitado e rotativo. Itens no
+              carrinho não garantem reserva até a finalização do pagamento. Frete grátis acima de <span
+                id="freeShippingThreshold">R$ 400,00</span>.</p>
           </div>
-
-          <button class="w-full bg-primary text-background py-6 font-headline-lg text-title-md uppercase tracking-widest hover:bg-secondary-container hover:text-white transition-all transform active:scale-95">FINALIZAR PEDIDO</button>
-
-          <div class="mt-8 flex items-center justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
-            <img alt="PayPal" class="h-4" src="img/pagamento-paypal.png">
-            <img alt="Visa" class="h-4" src="img/pagamento-visa.png">
-            <img alt="Mastercard" class="h-6" src="img/pagamento-mastercard.png">
-            <img alt="Pix" class="h-5" src="img/pagamento-pix.png">
-          </div>
-        </div>
-
-        <!-- Special Component: The Wheatpaste -->
-        <div class="mt-8 p-6 bg-surface-container-highest border-2 border-dashed border-outline-variant relative overflow-hidden">
-          <div class="absolute -right-4 -top-4 sticker-badge bg-secondary-container text-white px-4 py-1 font-label-mono text-[10px]">EXCLUSIVE DROP</div>
-          <h4 class="font-headline-lg text-body-lg uppercase mb-2">PRECISA DE AJUDA?</h4>
-          <p class="font-body-sm text-body-sm text-on-surface-variant">Nosso estoque é limitado e rotativo. Itens no carrinho não garantem reserva até a finalização do pagamento.</p>
         </div>
       </div>
 
@@ -199,7 +156,8 @@
   </main>
 
   <!-- Footer (igual às demais páginas) -->
-  <footer class="bg-surface-container-lowest text-on-surface border-t-4 border-primary grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap w-full mt-20">
+  <footer
+    class="bg-surface-container-lowest text-on-surface border-t-4 border-primary grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap w-full mt-20">
     <div class="col-span-1 md:col-span-2">
       <div class="mb-6">
         <a href="index.html"><img src="img/screen.png" alt="CORRE BRECHÓ" class="h-16 w-auto object-contain mb-4"></a>
@@ -209,44 +167,61 @@
         CULTURA DE RUA, MODA CONSCIENTE, ESTILO ETERNO.
       </p>
       <div class="flex space-x-6">
-        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="#">language</a>
-        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="#">share</a>
-        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="#">alternate_email</a>
+        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="index.html">language</a>
+        <a class="material-symbols-outlined text-primary hover:text-secondary-container"
+          href="https://www.instagram.com" target="_blank" rel="noopener">share</a>
+        <a class="material-symbols-outlined text-primary hover:text-secondary-container"
+          href="mailto:contato@correbrecho.com">alternate_email</a>
       </div>
     </div>
 
     <div>
       <h5 class="font-label-mono text-primary uppercase mb-6 underline">NAVEGAÇÃO</h5>
       <ul class="space-y-3">
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Newsletter</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="carrinho.html">Meu Carrinho</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="login.html">Minha Conta</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="newsletter.html">Newsletter</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="shipping.html">Shipping</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="carrinho.html">Meu Carrinho</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="login.html">Minha Conta</a></li>
       </ul>
     </div>
 
     <div>
       <h5 class="font-label-mono text-primary uppercase mb-6 underline">INSTITUCIONAL</h5>
       <ul class="space-y-3">
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Sobre Nós</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Lojas Físicas</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidade</a></li>
-        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="sobre.html">Sobre
+            Nós</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="lojas.html">Lojas
+            Físicas</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="privacidade.html">Privacidade</a></li>
+        <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+            href="faq.html">FAQ</a>
+        </li>
       </ul>
     </div>
   </footer>
 
   <!-- BottomNavBar (Mobile Only) — igual às demais páginas -->
-  <nav class="flex md:hidden justify-around items-center w-full pb-safe bg-surface-container-highest border-t-2 border-outline-variant fixed bottom-0 left-0 z-50">
-    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant" href="index.html">
+  <nav
+    class="flex md:hidden justify-around items-center w-full pb-safe bg-surface-container-highest border-t-2 border-outline-variant fixed bottom-0 left-0 z-50">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant"
+      href="index.html">
       <span class="material-symbols-outlined">storefront</span>
       <span class="font-label-mono text-[10px]">Shop</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant" href="index.html#drops">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant"
+      href="index.html#drops">
       <span class="material-symbols-outlined">bolt</span>
       <span class="font-label-mono text-[10px]">Drops</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant" href="#">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant"
+      href="#searchWrapper">
       <span class="material-symbols-outlined">search</span>
       <span class="font-label-mono text-[10px]">Search</span>
     </a>
@@ -256,20 +231,230 @@
     </a>
   </nav>
 
+  <!-- Motor de dados: catálogo + carrinho + frete -->
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script src="frete.js"></script>
+
   <script>
-    // Micro-interações dos controles de quantidade
-    document.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        if (this.innerText === '+' || this.innerText === '-') {
-          const span = this.parentElement.querySelector('span');
-          let val = parseInt(span.innerText);
-          if (this.innerText === '+') val++;
-          if (this.innerText === '-' && val > 1) val--;
-          span.innerText = val.toString().padStart(2, '0');
-        }
+    // ===================== Estado local da página =====================
+    let freteState = null; // { cost, free, minDays, maxDays, zoneLabel, cidade, uf } | null
+
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const emptyCartState = document.getElementById('emptyCartState');
+    const itemCountLabel = document.getElementById('itemCountLabel');
+    const subtotalValue = document.getElementById('subtotalValue');
+    const freteValue = document.getElementById('freteValue');
+    const freteDetail = document.getElementById('freteDetail');
+    const totalValue = document.getElementById('totalValue');
+    const finalizarBtn = document.getElementById('finalizarBtn');
+    const finalizarFeedback = document.getElementById('finalizarFeedback');
+    const cepInput = document.getElementById('cepInput');
+    const calcFreteBtn = document.getElementById('calcFreteBtn');
+    const cepFeedback = document.getElementById('cepFeedback');
+
+    document.getElementById('freeShippingThreshold').textContent = CorreCart.formatBRL(CorreFrete.FREE_SHIPPING_THRESHOLD);
+
+    function renderCartItem(item) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'group flex flex-col md:flex-row gap-6 p-4 border-2 border-outline-variant hover:border-primary transition-all duration-300';
+      wrapper.dataset.itemId = item.id;
+      wrapper.innerHTML = `
+        <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
+          <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+            alt="${item.alt}" src="${item.image}">
+        </div>
+        <div class="flex-grow flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">${item.name}</h3>
+              <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: ${item.size} / ${item.variant}</p>
+            </div>
+            <button type="button" data-action="remove" aria-label="Remover item" class="text-on-surface-variant hover:text-secondary-container transition-colors">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <div class="flex justify-between items-end mt-4">
+            <div class="flex items-center border border-outline">
+              <button type="button" data-action="decrease" aria-label="Diminuir quantidade" class="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
+              <span class="px-4 font-label-mono" data-qty>${String(item.qty).padStart(2, '0')}</span>
+              <button type="button" data-action="increase" aria-label="Aumentar quantidade" class="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
+            </div>
+            <span class="font-headline-lg text-title-md text-primary" data-line-total>${CorreCart.formatBRL(item.price * item.qty)}</span>
+          </div>
+        </div>
+      `;
+
+      wrapper.querySelector('[data-action="remove"]').addEventListener('click', () => {
+        CorreCart.removeFromCart(item.id);
+        freteState = null; // carrinho mudou, frete precisa ser recalculado
+        renderAll();
       });
+
+      wrapper.querySelector('[data-action="increase"]').addEventListener('click', () => {
+        const current = CorreCart.getCartDetails().find(i => i.id === item.id);
+        CorreCart.setQty(item.id, (current ? current.qty : 0) + 1);
+        freteState = null;
+        renderAll();
+      });
+
+      wrapper.querySelector('[data-action="decrease"]').addEventListener('click', () => {
+        const current = CorreCart.getCartDetails().find(i => i.id === item.id);
+        const nextQty = (current ? current.qty : 1) - 1;
+        CorreCart.setQty(item.id, nextQty);
+        freteState = null;
+        renderAll();
+      });
+
+      return wrapper;
+    }
+
+    function renderCartList() {
+      const items = CorreCart.getCartDetails();
+      cartItemsContainer.innerHTML = '';
+
+      if (items.length === 0) {
+        cartItemsContainer.classList.add('hidden');
+        emptyCartState.classList.remove('hidden');
+        emptyCartState.classList.add('flex');
+      } else {
+        cartItemsContainer.classList.remove('hidden');
+        emptyCartState.classList.add('hidden');
+        emptyCartState.classList.remove('flex');
+        items.forEach(item => cartItemsContainer.appendChild(renderCartItem(item)));
+      }
+
+      const totalUnits = items.reduce((sum, i) => sum + i.qty, 0);
+      itemCountLabel.textContent = `[ ${String(totalUnits).padStart(2, '0')} ITEM${totalUnits === 1 ? '' : 'S'} SELECIONADO${totalUnits === 1 ? '' : 'S'} ]`;
+
+      return items;
+    }
+
+    function renderSummary(items) {
+      const subtotal = items.reduce((sum, i) => sum + i.price * i.qty, 0);
+      subtotalValue.textContent = CorreCart.formatBRL(subtotal);
+
+      if (items.length === 0) {
+        freteState = null;
+      }
+
+      if (!freteState) {
+        freteValue.textContent = '--';
+        freteDetail.textContent = '';
+      } else if (freteState.free) {
+        freteValue.textContent = 'GRÁTIS';
+        freteDetail.textContent = `${freteState.cidade}/${freteState.uf} · ${freteState.minDays}-${freteState.maxDays} dias úteis`;
+      } else {
+        freteValue.textContent = CorreCart.formatBRL(freteState.cost);
+        freteDetail.textContent = `${freteState.cidade}/${freteState.uf} · ${freteState.minDays}-${freteState.maxDays} dias úteis`;
+      }
+
+      const freteCost = freteState ? freteState.cost : 0;
+      const total = subtotal + (freteState ? freteCost : 0);
+      totalValue.textContent = CorreCart.formatBRL(total);
+
+      finalizarBtn.disabled = items.length === 0;
+    }
+
+    function renderAll() {
+      const items = renderCartList();
+      renderSummary(items);
+    }
+
+    // ===================== CEP mask + cálculo de frete =====================
+    cepInput.addEventListener('input', () => {
+      const digits = CorreFrete.sanitizeCep(cepInput.value).slice(0, 8);
+      cepInput.value = digits.length > 5 ? `${digits.slice(0, 5)}-${digits.slice(5)}` : digits;
     });
 
+    async function handleCalcFrete() {
+      const digits = CorreFrete.sanitizeCep(cepInput.value);
+      const items = CorreCart.getCartDetails();
+
+      if (items.length === 0) {
+        cepFeedback.textContent = 'ADICIONE ITENS AO CARRINHO PRIMEIRO';
+        cepFeedback.className = 'font-label-mono text-[10px] uppercase mt-2 min-h-[14px] text-secondary-container';
+        return;
+      }
+
+      if (!CorreFrete.isValidCepFormat(digits)) {
+        cepFeedback.textContent = 'CEP INVÁLIDO — USE O FORMATO 00000-000';
+        cepFeedback.className = 'font-label-mono text-[10px] uppercase mt-2 min-h-[14px] text-secondary-container';
+        return;
+      }
+
+      calcFreteBtn.disabled = true;
+      calcFreteBtn.textContent = '...';
+      cepFeedback.textContent = 'CONSULTANDO ENDEREÇO...';
+      cepFeedback.className = 'font-label-mono text-[10px] uppercase mt-2 min-h-[14px] text-on-surface-variant';
+
+      try {
+        const { uf, cidade } = await CorreFrete.lookupCep(digits);
+        const weightKg = CorreCart.getTotalWeightKg();
+        const subtotal = CorreCart.getSubtotal();
+        const resultado = CorreFrete.calcularFrete(uf, weightKg, subtotal);
+
+        freteState = Object.assign({ uf, cidade }, resultado);
+
+        cepFeedback.textContent = `ENTREGA EM ${cidade.toUpperCase()}/${uf}`;
+        cepFeedback.className = 'font-label-mono text-[10px] uppercase mt-2 min-h-[14px] text-primary';
+        renderSummary(CorreCart.getCartDetails());
+      } catch (err) {
+        freteState = null;
+        cepFeedback.textContent = err.message === 'CEP não encontrado.' ? 'CEP NÃO ENCONTRADO' : 'NÃO FOI POSSÍVEL CALCULAR O FRETE AGORA';
+        cepFeedback.className = 'font-label-mono text-[10px] uppercase mt-2 min-h-[14px] text-secondary-container';
+        renderSummary(CorreCart.getCartDetails());
+      } finally {
+        calcFreteBtn.disabled = false;
+        calcFreteBtn.textContent = 'OK';
+      }
+    }
+
+    calcFreteBtn.addEventListener('click', handleCalcFrete);
+    cepInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleCalcFrete();
+      }
+    });
+
+    // ===================== Finalizar pedido =====================
+    finalizarBtn.addEventListener('click', () => {
+      const items = CorreCart.getCartDetails();
+      if (items.length === 0) return;
+
+      if (!freteState) {
+        finalizarFeedback.textContent = 'CALCULE O FRETE ANTES DE FINALIZAR';
+        finalizarFeedback.className = 'font-label-mono text-[10px] uppercase mt-3 text-center min-h-[14px] text-secondary-container';
+        cepInput.focus();
+        return;
+      }
+
+      finalizarBtn.disabled = true;
+      finalizarBtn.textContent = 'PROCESSANDO...';
+
+      setTimeout(() => {
+        CorreCart.clearCart();
+        freteState = null;
+        finalizarFeedback.textContent = 'PEDIDO CONFIRMADO — REDIRECIONANDO...';
+        finalizarFeedback.className = 'font-label-mono text-[10px] uppercase mt-3 text-center min-h-[14px] text-primary';
+        finalizarBtn.textContent = 'SUCESSO';
+        renderAll();
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1800);
+      }, 1200);
+    });
+
+    // Reage a mudanças feitas em outra aba/página (ex.: adicionar item na vitrine)
+    document.addEventListener('cart:updated', () => {
+      // Se o carrinho mudou por fora desta página, o frete calculado perde validade
+    });
+
+    renderAll();
+  </script>
+
+  <script>
     // Efeito de parallax atmosférico no scroll
     window.addEventListener('scroll', () => {
       const grain = document.querySelector('.grain-overlay');
@@ -316,4 +501,5 @@
   </script>
 
 </body>
+
 </html>

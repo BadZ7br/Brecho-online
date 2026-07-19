@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <filter id="grainB"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0"/></filter>
+    <linearGradient id="bgB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1b1b"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgB)"/>
+  <rect width="400" height="400" filter="url(#grainB)"/>
+
+  <!-- coturno vista lateral -->
+  <g transform="translate(60,120)">
+    <path d="M20 150 L20 90 Q20 60 55 55 L150 45 L200 70 L245 95 L260 110 Q275 118 275 140 L275 165 Q275 178 260 178 L15 178 Q0 178 0 165 L0 158 Q0 150 20 150 Z"
+          fill="#171717" stroke="#e5e2e1" stroke-width="3" stroke-linejoin="round"/>
+    <!-- sola grossa -->
+    <path d="M0 165 L275 165 L275 185 Q275 198 260 198 L15 198 Q0 198 0 185 Z" fill="#0e0e0e" stroke="#8e9379" stroke-width="2"/>
+    <line x1="10" y1="178" x2="270" y2="178" stroke="#8e9379" stroke-width="1.5"/>
+    <!-- cadarços -->
+    <line x1="60" y1="70" x2="110" y2="55" stroke="#c3f400" stroke-width="3"/>
+    <line x1="65" y1="90" x2="120" y2="72" stroke="#c3f400" stroke-width="3"/>
+    <line x1="72" y1="110" x2="130" y2="92" stroke="#c3f400" stroke-width="3"/>
+    <circle cx="60" cy="70" r="3" fill="#c3f400" stroke="none"/>
+    <circle cx="110" cy="55" r="3" fill="#c3f400" stroke="none"/>
+    <circle cx="65" cy="90" r="3" fill="#c3f400" stroke="none"/>
+    <circle cx="120" cy="72" r="3" fill="#c3f400" stroke="none"/>
+    <circle cx="72" cy="110" r="3" fill="#c3f400" stroke="none"/>
+    <circle cx="130" cy="92" r="3" fill="#c3f400" stroke="none"/>
+    <!-- costuras de desgaste -->
+    <path d="M155 48 Q195 55 235 90" fill="none" stroke="#444933" stroke-width="1.5" stroke-dasharray="3 3"/>
+  </g>
+
+  <text x="20" y="380" font-family="'Space Mono', monospace" font-size="11" letter-spacing="2" fill="#8e9379">CORRE BRECHÓ — DISTRESSED LEATHER</text>
+</svg>

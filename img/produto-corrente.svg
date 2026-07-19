@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <filter id="grainC"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0"/></filter>
+    <linearGradient id="bgC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1b1b"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgC)"/>
+  <rect width="400" height="400" filter="url(#grainC)"/>
+
+  <!-- corrente em curva -->
+  <g fill="none" stroke="#e5e2e1" stroke-width="7">
+    <path d="M90 90 Q60 140 90 190 Q120 240 90 290" stroke-dasharray="0" />
+  </g>
+  <g fill="none" stroke="#c4c9ac" stroke-width="4">
+    <ellipse cx="95" cy="100" rx="16" ry="24" transform="rotate(20 95 100)"/>
+    <ellipse cx="72" cy="145" rx="16" ry="24" transform="rotate(-15 72 145)"/>
+    <ellipse cx="90" cy="192" rx="16" ry="24" transform="rotate(20 90 192)"/>
+    <ellipse cx="115" cy="238" rx="16" ry="24" transform="rotate(-15 115 238)"/>
+    <ellipse cx="95" cy="283" rx="16" ry="24" transform="rotate(20 95 283)"/>
+  </g>
+  <g fill="none" stroke="#e5e2e1" stroke-width="7">
+    <path d="M310 90 Q340 140 310 190 Q280 240 310 290" />
+  </g>
+  <g fill="none" stroke="#c4c9ac" stroke-width="4">
+    <ellipse cx="305" cy="100" rx="16" ry="24" transform="rotate(-20 305 100)"/>
+    <ellipse cx="328" cy="145" rx="16" ry="24" transform="rotate(15 328 145)"/>
+    <ellipse cx="310" cy="192" rx="16" ry="24" transform="rotate(-20 310 192)"/>
+    <ellipse cx="285" cy="238" rx="16" ry="24" transform="rotate(15 285 238)"/>
+    <ellipse cx="305" cy="283" rx="16" ry="24" transform="rotate(-20 305 283)"/>
+  </g>
+
+  <!-- cadeado pingente -->
+  <g transform="translate(200,255)">
+    <path d="M-28 -10 L-28 -30 Q-28 -55 0 -55 Q28 -55 28 -30 L28 -10" fill="none" stroke="#c3f400" stroke-width="8"/>
+    <rect x="-42" y="-12" width="84" height="70" rx="6" fill="#171717" stroke="#c3f400" stroke-width="4"/>
+    <circle cx="0" cy="18" r="9" fill="none" stroke="#c3f400" stroke-width="4"/>
+    <line x1="0" y1="24" x2="0" y2="40" stroke="#c3f400" stroke-width="4"/>
+  </g>
+
+  <text x="20" y="380" font-family="'Space Mono', monospace" font-size="11" letter-spacing="2" fill="#8e9379">CORRE BRECHÓ — HEAVY METAL ACCESSORY</text>
+</svg>

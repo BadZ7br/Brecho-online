@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CORRE BRECHÓ - Lojas Físicas</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="tailwind-config.js"></script>
+</head>
+
+<body class="bg-background text-on-background">
+    <div class="grain-overlay"></div>
+
+    <header
+        class="bg-surface border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0">
+        <a href="index.html" class="font-headline-lg text-primary uppercase tracking-tighter">
+            <img src="img/screen.png" alt="CORRE BRECHÓ" class="h-12 w-auto object-contain">
+        </a>
+        <nav class="hidden md:flex space-x-8 items-center">
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+                href="index.html#categorias">Oversized</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+                href="index.html#drops">Drops</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+                href="carrinho.html">Meu Carrinho</a>
+            <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
+                href="login.html">Minha Conta</a>
+        </nav>
+        <div class="flex items-center space-x-6">
+            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors duration-300 ease-in-out active:scale-95"
+                href="carrinho.html">shopping_cart</a>
+            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-colors duration-300 ease-in-out active:scale-95"
+                href="login.html">account_circle</a>
+        </div>
+    </header>
+
+    <main class="min-h-screen px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+        <div class="max-w-5xl mx-auto">
+            <header class="mb-10">
+                <h1 class="font-headline-lg text-primary uppercase mb-4">Lojas Físicas</h1>
+                <p class="font-body-lg text-on-surface-variant">Nossos pontos de retirada e exposições estão espalhados
+                    pelas ruas mais vibes do Brasil.</p>
+            </header>
+
+            <section class="grid gap-8">
+                <article
+                    class="bg-surface-container p-8 border-t-4 border-primary rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.25)]">
+                    <h2 class="font-headline-md text-title-md uppercase mb-4">São Paulo</h2>
+                    <p class="font-body-sm text-on-surface-variant leading-relaxed">Rua das Rendas, 142 - Vila
+                        Madalena<br>Segunda a sábado, 11h às 19h.</p>
+                </article>
+                <article
+                    class="bg-surface-container p-8 border-t-4 border-primary rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.25)]">
+                    <h2 class="font-headline-md text-title-md uppercase mb-4">Rio de Janeiro</h2>
+                    <p class="font-body-sm text-on-surface-variant leading-relaxed">Av. Olegário Maciel, 820 -
+                        Botafogo<br>Terça a domingo, 12h às 20h.</p>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer
+        class="bg-surface-container-lowest text-on-surface border-t-4 border-primary grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap w-full mt-20">
+        <div class="col-span-1 md:col-span-2">
+            <div class="mb-6">
+                <a href="index.html"><img src="img/screen.png" alt="CORRE BRECHÓ"
+                        class="h-16 w-auto object-contain mb-4"></a>
+            </div>
+            <p class="font-body-sm text-on-surface-variant max-w-sm mb-8">
+                © 2026 CORRE BRECHÓ - UNDERGROUND THRIFT.<br>
+                CULTURA DE RUA, MODA CONSCIENTE, ESTILO ETERNO.
+            </p>
+            <div class="flex space-x-6">
+                <a class="material-symbols-outlined text-primary hover:text-secondary-container"
+                    href="index.html">language</a>
+                <a class="material-symbols-outlined text-primary hover:text-secondary-container"
+                    href="https://www.instagram.com" target="_blank" rel="noopener">share</a>
+                <a class="material-symbols-outlined text-primary hover:text-secondary-container"
+                    href="mailto:contato@correbrecho.com">alternate_email</a>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="font-label-mono text-primary uppercase mb-6 underline">NAVEGAÇÃO</h5>
+            <ul class="space-y-3">
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="newsletter.html">Newsletter</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="shipping.html">Shipping</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="carrinho.html">Meu Carrinho</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="login.html">Minha Conta</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h5 class="font-label-mono text-primary uppercase mb-6 underline">INSTITUCIONAL</h5>
+            <ul class="space-y-3">
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="sobre.html">Sobre Nós</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="lojas.html">Lojas Físicas</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="privacidade.html">Privacidade</a></li>
+                <li><a class="font-label-mono text-on-surface-variant hover:text-primary transition-colors"
+                        href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
