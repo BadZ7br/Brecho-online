@@ -1,0 +1,17 @@
+{
+  "Usuario": [],
+  "Vendedor": [],
+  "Categoria": [
+    { "ID_categoria": 1, "nome_categoria": "Moda feminina", "descricao": "Peças para o dia a dia" },
+    { "ID_categoria": 2, "nome_categoria": "Moda masculina", "descricao": "Streetwear e urbano" },
+    { "ID_categoria": 3, "nome_categoria": "Acessórios", "descricao": "Bolsas, bonés e bijuterias" }
+  ],
+  "Produto": [],
+  "Carrinho": [],
+  "Pedido": [],
+  "Pagamento": [],
+  "AvaliacaoVendedor": [],
+  "AvaliacaoProduto": [],
+  "Denuncia": [],
+  "Comissao": []
+}

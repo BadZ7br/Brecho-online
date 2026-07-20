@@ -118,7 +118,7 @@
                     <div>
                         <label
                             class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
-                        <input
+                        <input id="login-email"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30"
                             placeholder="seu@corre.com" type="email">
                     </div>
@@ -129,7 +129,7 @@
                             <a class="font-label-mono text-[10px] uppercase text-primary-container hover:underline"
                                 href="suporte.html">Esqueci a senha</a>
                         </div>
-                        <input
+                        <input id="login-password"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30"
                             placeholder="••••••••" type="password">
                     </div>
@@ -144,35 +144,95 @@
                 </form>
                 <!-- Registration Form (Hidden by default) -->
                 <form class="space-y-6 hidden" id="form-register">
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="flex gap-3 mb-6">
+                        <button type="button" id="register-user-btn"
+                            class="register-type-btn flex-1 rounded-md border border-outline-variant bg-surface-container-lowest py-3 text-sm uppercase text-primary transition-colors">
+                            Usuário
+                        </button>
+                        <button type="button" id="register-store-btn"
+                            class="register-type-btn flex-1 rounded-md border border-outline-variant bg-surface-container-lowest py-3 text-sm uppercase text-on-surface-variant transition-colors">
+                            Brechó
+                        </button>
+                    </div>
+                    <div id="register-user-fields" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome</label>
+                                <input id="register-user-name"
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                    type="text" placeholder="Seu nome completo">
+                            </div>
+                            <div>
+                                <label
+                                    class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Tag/Nick</label>
+                                <input id="register-user-nick"
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                    type="text" placeholder="Seu apelido de usuário">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="register-store-fields" class="space-y-6 hidden">
                         <div>
                             <label
-                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome</label>
-                            <input
+                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome do Brechó</label>
+                            <input id="register-store-name"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="text">
+                                type="text" placeholder="Nome do seu brechó">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">CNPJ</label>
+                                <input id="register-store-cnpj"
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                    type="text" placeholder="00.000.000/0000-00">
+                            </div>
+                            <div>
+                                <label
+                                    class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">WhatsApp</label>
+                                <input id="register-store-whatsapp"
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                    type="tel" placeholder="(00) 00000-0000">
+                            </div>
                         </div>
                         <div>
                             <label
-                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Tag/Nick</label>
-                            <input
+                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Cidade / Bairro</label>
+                            <input id="register-store-location"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="text">
+                                type="text" placeholder="Onde seu brechó opera">
+                        </div>
+                        <div>
+                            <label
+                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Descrição do Brechó</label>
+                            <textarea id="register-store-description" rows="3"
+                                class="w-full resize-none bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                placeholder="Conte um pouco sobre o seu brechó e o que você vende"></textarea>
                         </div>
                     </div>
                     <div>
                         <label
                             class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
-                        <input
+                        <input id="register-email"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                            type="email">
+                            type="email" placeholder="seu@corre.com">
                     </div>
-                    <div>
-                        <label
-                            class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Senha</label>
-                        <input
-                            class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                            type="password">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label
+                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Senha</label>
+                            <input id="register-password"
+                                class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                type="password" placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label
+                                class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Confirmar senha</label>
+                            <input id="register-confirm-password"
+                                class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                type="password" placeholder="••••••••">
+                        </div>
                     </div>
                     <div class="pt-4">
                         <button
@@ -233,26 +293,41 @@
                 tabLogin.classList.add('text-on-surface-variant');
             }
         }
-        // Form submission micro-interaction
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = form.querySelector('button');
-                const originalContent = btn.innerHTML;
-                btn.disabled = true;
-                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span>';
-                setTimeout(() => {
-                    btn.innerHTML = 'SUCESSO';
-                    btn.classList.replace('bg-primary-container', 'bg-white');
-                    setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.classList.replace('bg-white', 'bg-primary-container');
-                        btn.disabled = false;
-                    }, 1500);
-                }, 2000);
-            });
+
+        function toggleRegisterType(type) {
+            const userBtn = document.getElementById('register-user-btn');
+            const storeBtn = document.getElementById('register-store-btn');
+            const userFields = document.getElementById('register-user-fields');
+            const storeFields = document.getElementById('register-store-fields');
+
+            if (!userFields || !storeFields) return;
+
+            if (type === 'store') {
+                userFields.classList.add('hidden');
+                storeFields.classList.remove('hidden');
+                userBtn?.classList.remove('text-primary');
+                userBtn?.classList.add('text-on-surface-variant');
+                storeBtn?.classList.remove('text-on-surface-variant');
+                storeBtn?.classList.add('text-primary');
+            } else {
+                userFields.classList.remove('hidden');
+                storeFields.classList.add('hidden');
+                userBtn?.classList.remove('text-on-surface-variant');
+                userBtn?.classList.add('text-primary');
+                storeBtn?.classList.remove('text-primary');
+                storeBtn?.classList.add('text-on-surface-variant');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userBtn = document.getElementById('register-user-btn');
+            const storeBtn = document.getElementById('register-store-btn');
+
+            if (userBtn) userBtn.addEventListener('click', () => toggleRegisterType('user'));
+            if (storeBtn) storeBtn.addEventListener('click', () => toggleRegisterType('store'));
         });
     </script>
+    <script src="assets/js/auth.js"></script>
 </body>
 
 </html>
