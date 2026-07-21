@@ -41,14 +41,18 @@
         const wrapper = document.createElement('article');
         wrapper.className = 'bg-surface-container p-6 border border-outline-variant rounded-md';
 
+        const safeName = (product.name || '').replace(/</g, '&lt;');
+        const safeDesc = (product.description || 'Sem descrição adicional.').replace(/</g, '&lt;');
+        const safeId = (product.id || '').replace(/</g, '&lt;');
+
         wrapper.innerHTML = `
       <div class="flex flex-col xl:flex-row gap-6">
-        <img class="w-full xl:w-48 h-48 object-cover rounded-md" src="${product.image}" alt="${product.alt || product.name}">
+        <img class="w-full xl:w-48 h-48 object-cover rounded-md" src="${product.image}" alt="${safeName}">
         <div class="flex-1 space-y-4">
           <div class="flex flex-col gap-2">
-            <p class="font-headline-lg uppercase text-primary">${product.name}</p>
-            <p class="font-label-mono text-on-surface-variant uppercase text-[11px]">ID: ${product.id}</p>
-            <p class="font-body-sm text-on-surface-variant">${product.description || 'Sem descrição adicional.'}</p>
+            <p class="font-headline-lg uppercase text-primary">${safeName}</p>
+            <p class="font-label-mono text-on-surface-variant uppercase text-[11px]">ID: ${safeId}</p>
+            <p class="font-body-sm text-on-surface-variant">${safeDesc}</p>
           </div>
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Preço</span><p>${formatBRL(product.price)}</p></div>
@@ -57,8 +61,8 @@
             <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Tamanho</span><p>${product.size || '—'}</p></div>
           </div>
           <div class="flex flex-wrap gap-3">
-            <button type="button" data-action="edit" data-product-id="${product.id}" class="bg-primary text-background px-5 py-3 uppercase rounded-md hover:bg-secondary-container transition-colors">Editar</button>
-            <button type="button" data-action="delete" data-product-id="${product.id}" class="bg-surface text-on-surface border border-outline-variant px-5 py-3 uppercase rounded-md hover:bg-surface-variant transition-colors">Excluir</button>
+            <button type="button" data-action="edit" data-product-id="${safeId}" class="bg-primary text-background px-5 py-3 uppercase rounded-md hover:bg-secondary-container transition-colors">Editar</button>
+            <button type="button" data-action="delete" data-product-id="${safeId}" class="bg-surface text-on-surface border border-outline-variant px-5 py-3 uppercase rounded-md hover:bg-surface-variant transition-colors">Excluir</button>
           </div>
         </div>
       </div>
@@ -109,22 +113,21 @@
     function updateStats(products) {
         const totalProducts = products.length;
         const totalStock = products.reduce((sum, product) => sum + Number(product.stock || 0), 0);
-        const stats = window.BrechoDB.getDashboardStats(currentSeller.id);
 
         if (statProducts) statProducts.textContent = totalProducts;
         if (statStock) statStock.textContent = totalStock;
-        if (statOrders) statOrders.textContent = stats.sellerOrdersCount || 0;
-        if (statRevenue) statRevenue.textContent = formatBRL(stats.sellerRevenue || 0);
+        if (statOrders) statOrders.textContent = '0';
+        if (statRevenue) statRevenue.textContent = formatBRL(0);
 
         if (metricsList) {
             metricsList.innerHTML = `
         <article class="bg-surface p-5 rounded-md border border-outline-variant">
-          <p class="font-label-mono uppercase text-on-surface-variant mb-3">Produtos mais recentes</p>
-          <ul class="space-y-2">${stats.latestProducts.map(product => `<li class="font-body-sm">${product.name || product.id}</li>`).join('')}</ul>
+          <p class="font-label-mono uppercase text-on-surface-variant mb-3">Meus produtos</p>
+          <p class="font-headline-lg text-primary">${totalProducts}</p>
         </article>
         <article class="bg-surface p-5 rounded-md border border-outline-variant">
-          <p class="font-label-mono uppercase text-on-surface-variant mb-3">Total de usuários</p>
-          <p class="font-headline-lg text-primary">${stats.totalUsers}</p>
+          <p class="font-label-mono uppercase text-on-surface-variant mb-3">Estoque total</p>
+          <p class="font-headline-lg text-primary">${totalStock}</p>
         </article>
       `;
         }
@@ -132,12 +135,15 @@
 
     function refreshSellerView() {
         if (!currentSeller) return;
-        const products = window.BrechoDB.getSellerProducts(currentSeller.id);
-        renderSellerProducts(products);
-        updateStats(products);
+        if (window.BrechoDB && window.BrechoDB.getSellerProducts) {
+            const products = window.BrechoDB.getSellerProducts(currentSeller.id);
+            renderSellerProducts(products);
+            updateStats(products);
+        }
     }
 
     function startEditProduct(productId) {
+        if (!window.BrechoDB || !window.BrechoDB.getProductById) return;
         const product = window.BrechoDB.getProductById(productId);
         if (!product) return;
         editingProductId = product.id;
@@ -147,10 +153,12 @@
 
     function deleteProduct(productId) {
         if (!window.confirm('Deseja excluir este produto?')) return;
-        window.BrechoDB.deleteProduct(productId);
-        window.BrechoDB.refreshProductCatalog();
-        refreshSellerView();
-        showFeedback('Produto excluído com sucesso.');
+        if (window.BrechoDB && window.BrechoDB.deleteProduct) {
+            window.BrechoDB.deleteProduct(productId);
+            if (window.BrechoDB.refreshProductCatalog) window.BrechoDB.refreshProductCatalog();
+            refreshSellerView();
+            showFeedback('Produto excluído com sucesso.');
+        }
     }
 
     function submitProductForm(event) {
@@ -178,6 +186,11 @@
             return;
         }
 
+        if (!window.BrechoDB) {
+            showFeedback('Sistema de dados não disponível.', true);
+            return;
+        }
+
         if (editingProductId) {
             const product = window.BrechoDB.updateProduct(editingProductId, payload);
             if (!product) {
@@ -194,33 +207,48 @@
             showFeedback('Produto cadastrado com sucesso.');
         }
 
-        window.BrechoDB.refreshProductCatalog();
+        if (window.BrechoDB.refreshProductCatalog) window.BrechoDB.refreshProductCatalog();
         refreshSellerView();
         resetForm();
     }
 
-    function signOut() {
-        window.BrechoDB.clearSession();
+    async function signOut() {
+        try {
+            if (window.BrechoAPI) {
+                await BrechoAPI.auth.logout();
+            }
+        } catch (e) {
+            // ignora erro de logout
+        }
         window.location.href = 'login.html';
     }
 
     async function initVendorDashboard() {
-        if (!window.BrechoDB) {
-            console.error('BrechoDB não carregado');
+        if (!window.BrechoAPI) {
+            console.error('BrechoAPI não carregado. Inclua api.js antes de vendor.js.');
             return;
         }
 
-        const user = window.BrechoDB.getCurrentUser();
-        if (!user || user.type !== 'brecho') {
+        let user;
+        try {
+            user = await BrechoAPI.auth.getMe();
+        } catch (err) {
             window.location.href = 'login.html';
             return;
         }
 
-        currentSeller = user;
+        if (!user || !user.success || user.type !== 'brecho') {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        currentSeller = { type: user.type, id: user.data.ID_vendedor, data: user.data };
         if (sellerName) sellerName.textContent = currentSeller.data.nome;
 
-        const categories = window.BrechoDB.getCategories();
-        buildCategoryOptions(categories);
+        if (window.BrechoDB && window.BrechoDB.getCategories) {
+            const categories = window.BrechoDB.getCategories();
+            buildCategoryOptions(categories);
+        }
 
         refreshSellerView();
 
