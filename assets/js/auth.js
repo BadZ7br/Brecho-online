@@ -151,7 +151,7 @@ function initAuth() {
     }
 }
 
-window.BrechoDB = {
+window.BrechoAuth = {
     registerUser,
     registerStore,
     login,

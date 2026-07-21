@@ -1,6 +1,0 @@
-
-  📁 Banco de dados: JSON (data/database.json)
-  🟢 Corre Brechó API rodando em http://localhost:3000
-  📦 Frontend servido em http://localhost:3000/index.html
-  🔌 API disponível em http://localhost:3000/api
-

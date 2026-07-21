@@ -51,12 +51,10 @@ async function registerUser(req, res) {
 
     const hashedPassword = await bcrypt.hash(senha, BCRYPT_ROUNDS);
 
-    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
     const [result] = await pool.query(
       `INSERT INTO Usuario (nome, nick, email, telefone, cpf, senha, data_cadastro, status_conta)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 'Ativo')`,
-      [nome, nick, normalizedEmail, telefone || '', cpf || '', hashedPassword, now]
+       VALUES (?, ?, ?, ?, ?, ?, NOW(), 'Ativo')`,
+      [nome, nick, normalizedEmail, telefone || '', cpf || '', hashedPassword]
     );
 
     res.status(201).json({
@@ -106,12 +104,10 @@ async function registerStore(req, res) {
 
     const hashedPassword = await bcrypt.hash(senha, BCRYPT_ROUNDS);
 
-    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
     const [result] = await pool.query(
       `INSERT INTO Vendedor (nome, sobrenome, email, telefone, cnpj, localizacao, descricao, senha, data_cadastro, status_conta)
-       VALUES (?, '', ?, ?, ?, ?, ?, ?, ?, 'Ativo')`,
-      [nome_fantasia, normalizedEmail, whatsapp, normalizedCnpj, localizacao, descricao || '', hashedPassword, now]
+       VALUES (?, '', ?, ?, ?, ?, ?, ?, NOW(), 'Ativo')`,
+      [nome_fantasia, normalizedEmail, whatsapp, normalizedCnpj, localizacao, descricao || '', hashedPassword]
     );
 
     res.status(201).json({

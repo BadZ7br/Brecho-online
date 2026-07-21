@@ -440,32 +440,8 @@
             return loadDatabase();
         }
 
-        try {
-            const response = await fetch('assets/data/database.json', { cache: 'no-store' });
-            if (!response.ok) {
-                throw new Error('Não foi possível carregar database.json');
-            }
-            const fileDatabase = await response.json();
-            const database = {
-                Usuario: Array.isArray(fileDatabase.Usuario) ? fileDatabase.Usuario : defaultDatabase.Usuario,
-                Vendedor: Array.isArray(fileDatabase.Vendedor) ? fileDatabase.Vendedor : defaultDatabase.Vendedor,
-                Categoria: Array.isArray(fileDatabase.Categoria) ? fileDatabase.Categoria : defaultDatabase.Categoria,
-                Produto: Array.isArray(fileDatabase.Produto) ? fileDatabase.Produto : defaultDatabase.Produto,
-                Carrinho: Array.isArray(fileDatabase.Carrinho) ? fileDatabase.Carrinho : defaultDatabase.Carrinho,
-                Pedido: Array.isArray(fileDatabase.Pedido) ? fileDatabase.Pedido : defaultDatabase.Pedido,
-                Pagamento: Array.isArray(fileDatabase.Pagamento) ? fileDatabase.Pagamento : defaultDatabase.Pagamento,
-                AvaliacaoVendedor: Array.isArray(fileDatabase.AvaliacaoVendedor) ? fileDatabase.AvaliacaoVendedor : defaultDatabase.AvaliacaoVendedor,
-                AvaliacaoProduto: Array.isArray(fileDatabase.AvaliacaoProduto) ? fileDatabase.AvaliacaoProduto : defaultDatabase.AvaliacaoProduto,
-                Denuncia: Array.isArray(fileDatabase.Denuncia) ? fileDatabase.Denuncia : defaultDatabase.Denuncia,
-                Comissao: Array.isArray(fileDatabase.Comissao) ? fileDatabase.Comissao : defaultDatabase.Comissao
-            };
-            localStorage.setItem(BRECHO_DB_KEY, JSON.stringify(database, null, 2));
-            return loadDatabase();
-        } catch (error) {
-            console.warn('Falha ao carregar assets/data/database.json:', error);
-            localStorage.setItem(BRECHO_DB_KEY, JSON.stringify(defaultDatabase, null, 2));
-            return loadDatabase();
-        }
+        localStorage.setItem(BRECHO_DB_KEY, JSON.stringify(defaultDatabase, null, 2));
+        return loadDatabase();
     }
 
     function refreshProductCatalog() {
