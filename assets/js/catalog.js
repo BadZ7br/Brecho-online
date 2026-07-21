@@ -1,0 +1,80 @@
+(function (global) {
+    'use strict';
+
+    function createProductCard(product) {
+        const wrapper = document.createElement('article');
+        wrapper.className = 'group bg-surface-container-high border border-outline-variant hover:border-primary transition-colors overflow-hidden rounded-sm';
+
+        wrapper.innerHTML = `
+      <div class="relative aspect-[3/4] overflow-hidden">
+        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          alt="${product.alt || product.name}"
+          src="${product.image}">
+        <div class="absolute top-2 left-2 bg-black text-white font-label-mono px-2 text-[10px]">TAM ${product.size || 'ÚNICO'}</div>
+      </div>
+      <div class="p-4">
+        <h4 class="font-body-lg text-primary truncate uppercase">${product.name}</h4>
+        <p class="font-label-mono text-on-surface-variant mt-2 leading-tight text-[13px]">${product.description || ''}</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="font-label-mono text-secondary-container">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+          <button type="button" data-add-to-cart="${product.id}"
+            aria-label="Adicionar ${product.name} ao carrinho"
+            class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">add_shopping_cart</button>
+        </div>
+      </div>
+    `;
+
+        return wrapper;
+    }
+
+    function renderCatalog() {
+        const container = document.getElementById('productGrid');
+        if (!container) return;
+
+        const products = global.PRODUCTS || [];
+        container.innerHTML = '';
+
+        if (!products.length) {
+            container.innerHTML = '<p class="font-label-mono text-on-surface-variant">Nenhum produto disponível no momento.</p>';
+            return;
+        }
+
+        products.forEach(product => container.appendChild(createProductCard(product)));
+        attachAddToCartListeners();
+    }
+
+    function attachAddToCartListeners() {
+        document.querySelectorAll('[data-add-to-cart]').forEach(btn => {
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const productId = btn.dataset.addToCart;
+                const product = window.PRODUCTS_BY_ID?.[productId];
+                if (!product) return;
+                window.CorreCart.addToCart(productId, 1);
+                showCartToast(product.name);
+                btn.classList.add('scale-125');
+                setTimeout(() => btn.classList.remove('scale-125'), 150);
+            });
+        });
+    }
+
+    async function initCatalog() {
+        if (window.BrechoDB) {
+            if (typeof window.BrechoDB.initDatabase === 'function') {
+                await window.BrechoDB.initDatabase();
+            } else if (typeof window.BrechoDB.refreshProductCatalog === 'function') {
+                window.BrechoDB.refreshProductCatalog();
+            }
+        }
+        renderCatalog();
+    }
+
+    global.initCatalog = initCatalog;
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCatalog);
+    } else {
+        initCatalog();
+    }
+})(window);

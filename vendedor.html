@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedor | Corre Brechó</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;700&amp;family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-background text-on-background min-h-screen overflow-x-hidden">
+    <div class="grain-overlay"></div>
+    <header class="bg-surface border-b-2 border-outline-variant sticky top-0 z-50">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4 px-margin-mobile md:px-margin-desktop py-6">
+            <div>
+                <a href="index.html" class="flex items-center gap-3 mb-4 md:mb-0">
+                    <img src="img/screen.png" alt="Corre Brechó" class="h-12 w-auto object-contain">
+                    <div>
+                        <p class="font-headline-lg uppercase text-primary">Dashboard do Vendedor</p>
+                        <p class="font-label-mono text-on-surface-variant text-[12px]">Gerencie produtos, métricas e seu
+                            catálogo</p>
+                    </div>
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="font-label-mono uppercase text-on-surface-variant">Olá,</p>
+                    <p id="sellerName" class="font-headline-lg uppercase text-primary"></p>
+                </div>
+                <button id="signOutBtn"
+                    class="bg-primary text-background px-5 py-3 uppercase text-[12px] tracking-[0.2em] hover:bg-secondary-container transition-colors">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-10 space-y-10">
+        <section class="grid grid-cols-1 xl:grid-cols-[1.5fr_1fr] gap-8">
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <article class="bg-surface-container-high p-6 border border-outline-variant rounded-md">
+                        <p class="font-label-mono uppercase text-on-surface-variant mb-3">Meus produtos</p>
+                        <p id="statProducts" class="font-headline-lg text-title-md text-primary">0</p>
+                    </article>
+                    <article class="bg-surface-container-high p-6 border border-outline-variant rounded-md">
+                        <p class="font-label-mono uppercase text-on-surface-variant mb-3">Estoque total</p>
+                        <p id="statStock" class="font-headline-lg text-title-md text-primary">0</p>
+                    </article>
+                    <article class="bg-surface-container-high p-6 border border-outline-variant rounded-md">
+                        <p class="font-label-mono uppercase text-on-surface-variant mb-3">Pedidos</p>
+                        <p id="statOrders" class="font-headline-lg text-title-md text-primary">0</p>
+                    </article>
+                    <article class="bg-surface-container-high p-6 border border-outline-variant rounded-md">
+                        <p class="font-label-mono uppercase text-on-surface-variant mb-3">Receita</p>
+                        <p id="statRevenue" class="font-headline-lg text-title-md text-primary">R$ 0,00</p>
+                    </article>
+                </div>
+
+                <div class="bg-surface-container-high p-8 border border-outline-variant rounded-md">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <p class="font-headline-lg uppercase text-primary">Cadastre um produto</p>
+                            <p class="font-label-mono text-on-surface-variant text-[13px]">Os produtos são persistidos
+                                no banco local.</p>
+                        </div>
+                    </div>
+                    <form id="productForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Nome do produto</span>
+                                <input id="productName" type="text"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                    required>
+                            </label>
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">ID/Slug</span>
+                                <input id="productId" type="text"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                    placeholder="ex: yinyang" required>
+                            </label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Preço</span>
+                                <input id="productPrice" type="number" step="0.01"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                    required>
+                            </label>
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Estoque</span>
+                                <input id="productStock" type="number" step="1"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                    required>
+                            </label>
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Peso (kg)</span>
+                                <input id="productWeight" type="number" step="0.01"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                    required>
+                            </label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Tamanho</span>
+                                <input id="productSize" type="text"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md">
+                            </label>
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Variante</span>
+                                <input id="productVariant" type="text"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md">
+                            </label>
+                            <label class="space-y-2">
+                                <span class="font-label-mono uppercase text-on-surface-variant">Categoria</span>
+                                <select id="productCategory"
+                                    class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"></select>
+                            </label>
+                        </div>
+                        <label class="space-y-2">
+                            <span class="font-label-mono uppercase text-on-surface-variant">URL da imagem</span>
+                            <input id="productImage" type="text"
+                                class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"
+                                required>
+                        </label>
+                        <label class="space-y-2">
+                            <span class="font-label-mono uppercase text-on-surface-variant">Descrição</span>
+                            <textarea id="productDescription" rows="4"
+                                class="w-full bg-background border border-outline-variant px-4 py-3 rounded-md"></textarea>
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+                            <button type="submit"
+                                class="bg-primary text-background px-6 py-3 uppercase rounded-md hover:bg-secondary-container transition-colors">Salvar
+                                produto</button>
+                            <button type="button" id="cancelEditBtn"
+                                class="hidden text-on-surface-variant underline">Cancelar edição</button>
+                        </div>
+                        <p id="vendorFeedback"
+                            class="font-label-mono text-[12px] uppercase min-h-[22px] text-on-surface-variant"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="bg-surface-container-high p-8 border border-outline-variant rounded-md">
+                <h2 class="font-headline-lg uppercase text-primary mb-5">Estatísticas Rápidas</h2>
+                <div class="space-y-6" id="metricsList"></div>
+            </div>
+        </section>
+
+        <section class="bg-surface-container-high p-8 border border-outline-variant rounded-md">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <p class="font-headline-lg uppercase text-primary">Meus produtos</p>
+                    <p class="font-label-mono text-on-surface-variant text-[13px]">Visualize, edite ou exclua produtos
+                        cadastrados.</p>
+                </div>
+            </div>
+            <div id="sellerProductsContainer" class="space-y-4"></div>
+        </section>
+    </main>
+
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/vendor.js"></script>
+</body>
+
+</html>
