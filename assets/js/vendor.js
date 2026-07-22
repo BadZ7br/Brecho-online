@@ -33,21 +33,29 @@
     function buildCategoryOptions(categories) {
         if (!categorySelect) return;
         categorySelect.innerHTML = categories
-            .map(category => `<option value="${category.id}">${category.name}</option>`)
+            .map(category => `<option value="${category.id}">${escapeHtml(category.name)}</option>`)
             .join('');
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str || '';
+        return div.innerHTML;
     }
 
     function createProductCard(product) {
         const wrapper = document.createElement('article');
         wrapper.className = 'bg-surface-container p-6 border border-outline-variant rounded-md';
 
-        const safeName = (product.name || '').replace(/</g, '&lt;');
-        const safeDesc = (product.description || 'Sem descrição adicional.').replace(/</g, '&lt;');
-        const safeId = (product.id || '').replace(/</g, '&lt;');
+        const safeName = escapeHtml(product.name);
+        const safeDesc = escapeHtml(product.description || 'Sem descrição adicional.');
+        const safeId = escapeHtml(product.id);
+        const safeImage = escapeHtml(product.image);
+        const safeAlt = escapeHtml(product.alt);
 
         wrapper.innerHTML = `
       <div class="flex flex-col xl:flex-row gap-6">
-        <img class="w-full xl:w-48 h-48 object-cover rounded-md" src="${product.image}" alt="${safeName}">
+        <img class="w-full xl:w-48 h-48 object-cover rounded-md" src="${safeImage}" alt="${safeAlt}">
         <div class="flex-1 space-y-4">
           <div class="flex flex-col gap-2">
             <p class="font-headline-lg uppercase text-primary">${safeName}</p>
@@ -58,7 +66,7 @@
             <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Preço</span><p>${formatBRL(product.price)}</p></div>
             <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Estoque</span><p>${product.stock}</p></div>
             <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Peso</span><p>${product.weightKg} kg</p></div>
-            <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Tamanho</span><p>${product.size || '—'}</p></div>
+            <div class="space-y-1"><span class="font-label-mono text-on-surface-variant uppercase">Tamanho</span><p>${escapeHtml(product.size) || '—'}</p></div>
           </div>
           <div class="flex flex-wrap gap-3">
             <button type="button" data-action="edit" data-product-id="${safeId}" class="bg-primary text-background px-5 py-3 uppercase rounded-md hover:bg-secondary-container transition-colors">Editar</button>
@@ -212,32 +220,21 @@
         resetForm();
     }
 
-    async function signOut() {
-        try {
-            if (window.BrechoAPI) {
-                await BrechoAPI.auth.logout();
-            }
-        } catch (e) {
-            // ignora erro de logout
+    function signOut() {
+        if (window.BrechoDB && window.BrechoDB.clearSession) {
+            window.BrechoDB.clearSession();
         }
         window.location.href = 'login.html';
     }
 
-    async function initVendorDashboard() {
-        if (!window.BrechoAPI) {
-            console.error('BrechoAPI não carregado. Inclua api.js antes de vendor.js.');
+    function initVendorDashboard() {
+        if (!window.BrechoDB) {
+            console.error('BrechoDB não carregado. Inclua db.js antes de vendor.js.');
             return;
         }
 
-        let user;
-        try {
-            user = await BrechoAPI.auth.getMe();
-        } catch (err) {
-            window.location.href = 'login.html';
-            return;
-        }
-
-        if (!user || !user.success || user.type !== 'brecho') {
+        const user = BrechoDB.getCurrentUser();
+        if (!user || user.type !== 'brecho') {
             window.location.href = 'login.html';
             return;
         }
@@ -245,7 +242,7 @@
         currentSeller = { type: user.type, id: user.data.ID_vendedor, data: user.data };
         if (sellerName) sellerName.textContent = currentSeller.data.nome;
 
-        if (window.BrechoDB && window.BrechoDB.getCategories) {
+        if (window.BrechoDB.getCategories) {
             const categories = window.BrechoDB.getCategories();
             buildCategoryOptions(categories);
         }

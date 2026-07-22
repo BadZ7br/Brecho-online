@@ -16,22 +16,6 @@
 
     <!-- Configuração do Tailwind compartilhada entre todas as páginas -->
     <script src="assets/js/tailwind-config.js"></script>
-    <!-- Remove o contorno azul de foco (ring) que o plugin forms do Tailwind aplica (adicionado) -->
-    <style>
-        input,
-        .input-focus-accent {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        input:focus,
-        .input-focus-accent:focus,
-        input:focus-visible,
-        .input-focus-accent:focus-visible {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-    </style>
 </head>
 
 <body
@@ -120,7 +104,7 @@
                             class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
                         <input id="login-email"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30"
-                            placeholder="seu@corre.com" type="email">
+                            placeholder="seu@corre.com" type="email" required>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
@@ -131,7 +115,7 @@
                         </div>
                         <input id="login-password"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all placeholder:opacity-30"
-                            placeholder="••••••••" type="password">
+                            placeholder="••••••••" type="password" required>
                     </div>
                     <div class="pt-4">
                         <button
@@ -161,14 +145,14 @@
                                     class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome</label>
                                 <input id="register-user-name"
                                     class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                    type="text" placeholder="Seu nome completo">
+                                    type="text" placeholder="Seu nome completo" required>
                             </div>
                             <div>
                                 <label
                                     class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Tag/Nick</label>
                                 <input id="register-user-nick"
                                     class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                    type="text" placeholder="Seu apelido de usuário">
+                                    type="text" placeholder="Seu apelido de usuário" required>
                             </div>
                         </div>
                     </div>
@@ -178,7 +162,7 @@
                                 class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome do Brechó</label>
                             <input id="register-store-name"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="text" placeholder="Nome do seu brechó">
+                                type="text" placeholder="Nome do seu brechó" required>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
@@ -216,7 +200,7 @@
                             class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Email</label>
                         <input id="register-email"
                             class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                            type="email" placeholder="seu@corre.com">
+                            type="email" placeholder="seu@corre.com" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -224,14 +208,14 @@
                                 class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Senha</label>
                             <input id="register-password"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="password" placeholder="••••••••">
+                                type="password" placeholder="••••••••" required>
                         </div>
                         <div>
                             <label
                                 class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Confirmar senha</label>
                             <input id="register-confirm-password"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="password" placeholder="••••••••">
+                                type="password" placeholder="••••••••" required>
                         </div>
                     </div>
                     <div class="pt-4">
@@ -327,7 +311,7 @@
             if (storeBtn) storeBtn.addEventListener('click', () => toggleRegisterType('store'));
         });
     </script>
-    <script src="assets/js/api.js"></script>
+    <script src="assets/js/db.js"></script>
     <script src="assets/js/auth.js"></script>
 </body>
 

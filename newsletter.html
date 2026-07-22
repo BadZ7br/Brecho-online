@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="pt-BR">
 
 <head>
@@ -56,10 +56,10 @@
                 <p class="font-body-sm text-on-surface-variant mb-8">Deixe seu e-mail e receba avisos diretos do corre.
                     Não enviamos spam.</p>
 
-                <form class="grid gap-4 sm:grid-cols-[1fr_auto]">
+                <form class="grid gap-4 sm:grid-cols-[1fr_auto]" id="newsletterForm">
                     <input type="email" placeholder="seuemail@exemplo.com"
                         class="bg-surface border border-outline-variant rounded-full px-5 py-4 text-on-surface focus:border-primary focus:ring-0 outline-none"
-                        aria-label="Endereço de e-mail">
+                        aria-label="Endereço de e-mail" required>
                     <button type="submit"
                         class="bg-primary text-background rounded-full px-8 py-4 uppercase tracking-[0.25em] hover:bg-secondary-container transition-colors">Enviar</button>
                 </form>
@@ -116,6 +116,22 @@
             </ul>
         </div>
     </footer>
+    <script>
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = this.querySelector('input[type="email"]');
+            if (input && input.value) {
+                input.value = '';
+                const btn = this.querySelector('button[type="submit"]');
+                if (btn) {
+                    const original = btn.textContent;
+                    btn.textContent = 'Inscrito!';
+                    btn.disabled = true;
+                    setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 2000);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

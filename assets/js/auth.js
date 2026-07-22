@@ -1,32 +1,7 @@
 /**
- * CORRE BRECHÓ — Autenticação + API
- * Gerencia cadastro, login, sessão e operações de produto.
- * Fase 1-2: Auth via API REST | Produtos via localStorage (migrado nas próximas fases)
+ * CORRE BRECHO — Autenticação (localStorage)
+ * Gerencia cadastro, login e sessão via BrechoDB.
  */
-
-// ─── Auth via API ───────────────────────────────────────────
-
-async function registerUser(formData) {
-    return BrechoAPI.auth.registerUser(formData);
-}
-
-async function registerStore(formData) {
-    return BrechoAPI.auth.registerStore(formData);
-}
-
-async function login(email, senha) {
-    return BrechoAPI.auth.login(email, senha);
-}
-
-async function logout() {
-    return BrechoAPI.auth.logout();
-}
-
-async function getCurrentUser() {
-    return BrechoAPI.auth.getMe();
-}
-
-// ─── Toast ──────────────────────────────────────────────────
 
 function showToast(message, type) {
     const existing = document.getElementById('brecho-toast');
@@ -57,8 +32,6 @@ function showToast(message, type) {
     }, 3000);
 }
 
-// ─── Helpers de formulário ──────────────────────────────────
-
 function buildRegisterData() {
     const activeStore = document.getElementById('register-store-fields')?.classList.contains('hidden') === false;
     const formData = {
@@ -81,8 +54,6 @@ function buildRegisterData() {
     return { formData, isStore: activeStore };
 }
 
-// ─── Handlers de formulário ─────────────────────────────────
-
 async function handleLoginSubmit(event) {
     event.preventDefault();
     const submitButton = event.target.querySelector('button[type="submit"]');
@@ -94,13 +65,15 @@ async function handleLoginSubmit(event) {
     const password = document.getElementById('login-password')?.value || '';
 
     try {
-        const result = await login(email, password);
+        const result = BrechoDB.login(email, password);
         if (result.success) {
             showToast(`Login bem-sucedido como ${result.type === 'usuario' ? 'comprador' : 'vendedor'}.`);
             event.target.reset();
             setTimeout(() => {
                 window.location.href = result.type === 'brecho' ? 'vendedor.html' : 'index.html';
             }, 800);
+        } else {
+            showToast(result.message || 'Usuário ou senha inválidos.', 'error');
         }
     } catch (err) {
         showToast(err.message || 'Usuário ou senha inválidos.', 'error');
@@ -120,7 +93,7 @@ async function handleRegisterSubmit(event) {
     const { formData, isStore } = buildRegisterData();
 
     try {
-        const result = isStore ? await registerStore(formData) : await registerUser(formData);
+        const result = isStore ? BrechoDB.registerStore(formData) : BrechoDB.registerUser(formData);
         if (result.success) {
             showToast(result.message);
             event.target.reset();
@@ -128,6 +101,8 @@ async function handleRegisterSubmit(event) {
                 const loginTab = document.getElementById('tab-login');
                 if (loginTab) loginTab.click();
             }
+        } else {
+            showToast(result.message || 'Erro ao realizar cadastro.', 'error');
         }
     } catch (err) {
         showToast(err.message || 'Erro ao realizar cadastro.', 'error');
@@ -136,8 +111,6 @@ async function handleRegisterSubmit(event) {
         submitButton.disabled = false;
     }
 }
-
-// ─── Inicialização ──────────────────────────────────────────
 
 function initAuth() {
     const loginForm = document.getElementById('form-login');
@@ -151,13 +124,5 @@ function initAuth() {
     }
 }
 
-window.BrechoAuth = {
-    registerUser,
-    registerStore,
-    login,
-    logout,
-    getCurrentUser,
-    showToast
-};
-
+window.BrechoAuth = { showToast };
 window.addEventListener('DOMContentLoaded', initAuth);

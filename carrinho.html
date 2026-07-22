@@ -33,13 +33,13 @@
       <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
         href="index.html#categorias">Oversized</a>
       <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
-        href="index.html#categorias">Sneakers</a>
+        href="index.html#categorias">Tênis</a>
       <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
-        href="index.html#categorias">Accessories</a>
+        href="index.html#categorias">Acessórios</a>
       <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
         href="index.html#drops">Drops</a>
       <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
-        href="archive.html">Archive</a>
+        href="archive.html">Arquivos</a>
     </nav>
     <div class="flex items-center space-x-6">
       <div class="relative flex items-center" id="searchWrapper">
@@ -167,7 +167,7 @@
         CULTURA DE RUA, MODA CONSCIENTE, ESTILO ETERNO.
       </p>
       <div class="flex space-x-6">
-        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="index.html">language</a>
+        <a class="material-symbols-outlined text-primary hover:text-secondary-container" href="language.html">language</a>
         <a class="material-symbols-outlined text-primary hover:text-secondary-container"
           href="https://www.instagram.com" target="_blank" rel="noopener">share</a>
         <a class="material-symbols-outlined text-primary hover:text-secondary-container"
@@ -232,13 +232,19 @@
   </nav>
 
   <!-- Motor de dados: catálogo + carrinho + frete -->
-  <script src="assets/js/api.js"></script>
   <script src="assets/js/db.js"></script>
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/frete.js"></script>
 
   <script>
+    // ===================== Helpers =====================
+    function escapeHtml(str) {
+      if (str == null) return '';
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return String(str).replace(/[&<>"']/g, (c) => map[c]);
+    }
+
     // ===================== Estado local da página =====================
     let freteState = null; // { cost, free, minDays, maxDays, zoneLabel, cidade, uf } | null
 
@@ -263,14 +269,14 @@
       wrapper.dataset.itemId = item.id;
       wrapper.innerHTML = `
         <div class="w-full md:w-32 h-48 md:h-32 bg-surface-container overflow-hidden flex-shrink-0">
-          <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-            alt="${item.alt}" src="${item.image}">
-        </div>
-        <div class="flex-grow flex flex-col justify-between">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">${item.name}</h3>
-              <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: ${item.size} / ${item.variant}</p>
+            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              alt="${escapeHtml(item.alt)}" src="${escapeHtml(item.image)}">
+          </div>
+          <div class="flex-grow flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-headline-lg text-title-md uppercase leading-none mb-2">${escapeHtml(item.name)}</h3>
+                <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">SIZE: ${escapeHtml(item.size)} / ${escapeHtml(item.variant)}</p>
             </div>
             <button type="button" data-action="remove" aria-label="Remover item" class="text-on-surface-variant hover:text-secondary-container transition-colors">
               <span class="material-symbols-outlined">close</span>
@@ -450,7 +456,8 @@
 
     // Reage a mudanças feitas em outra aba/página (ex.: adicionar item na vitrine)
     document.addEventListener('cart:updated', () => {
-      // Se o carrinho mudou por fora desta página, o frete calculado perde validade
+      freteState = null;
+      renderAll();
     });
 
     renderAll();

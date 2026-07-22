@@ -1,24 +1,37 @@
 (function (global) {
     'use strict';
 
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str || '';
+        return div.innerHTML;
+    }
+
     function createProductCard(product) {
         const wrapper = document.createElement('article');
         wrapper.className = 'group bg-surface-container-high border border-outline-variant hover:border-primary transition-colors overflow-hidden rounded-sm';
 
+        const safeName = escapeHtml(product.name);
+        const safeAlt = escapeHtml(product.alt || product.name);
+        const safeImage = escapeHtml(product.image);
+        const safeDesc = escapeHtml(product.description || '');
+        const safeSize = escapeHtml(product.size || 'ÚNICO');
+        const safeId = escapeHtml(product.id);
+
         wrapper.innerHTML = `
       <div class="relative aspect-[3/4] overflow-hidden">
         <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          alt="${product.alt || product.name}"
-          src="${product.image}">
-        <div class="absolute top-2 left-2 bg-black text-white font-label-mono px-2 text-[10px]">TAM ${product.size || 'ÚNICO'}</div>
+          alt="${safeAlt}"
+          src="${safeImage}">
+        <div class="absolute top-2 left-2 bg-black text-white font-label-mono px-2 text-[10px]">TAM ${safeSize}</div>
       </div>
       <div class="p-4">
-        <h4 class="font-body-lg text-primary truncate uppercase">${product.name}</h4>
-        <p class="font-label-mono text-on-surface-variant mt-2 leading-tight text-[13px]">${product.description || ''}</p>
+        <h4 class="font-body-lg text-primary truncate uppercase">${safeName}</h4>
+        <p class="font-label-mono text-on-surface-variant mt-2 leading-tight text-[13px]">${safeDesc}</p>
         <div class="flex justify-between items-center mt-4">
           <span class="font-label-mono text-secondary-container">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
-          <button type="button" data-add-to-cart="${product.id}"
-            aria-label="Adicionar ${product.name} ao carrinho"
+          <button type="button" data-add-to-cart="${safeId}"
+            aria-label="Adicionar ${safeName} ao carrinho"
             class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">add_shopping_cart</button>
         </div>
       </div>
@@ -52,7 +65,7 @@
                 const product = window.PRODUCTS_BY_ID?.[productId];
                 if (!product) return;
                 window.CorreCart.addToCart(productId, 1);
-                showCartToast(product.name);
+                if (typeof showCartToast === 'function') showCartToast(product.name);
                 btn.classList.add('scale-125');
                 setTimeout(() => btn.classList.remove('scale-125'), 150);
             });

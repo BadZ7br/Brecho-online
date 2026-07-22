@@ -34,16 +34,22 @@
     qty = qty || 1;
     if (!global.PRODUCTS_BY_ID || !global.PRODUCTS_BY_ID[productId]) {
       console.error("Produto inexistente:", productId);
-      return;
+      return false;
     }
+    const product = global.PRODUCTS_BY_ID[productId];
     const cart = getCart();
     const existing = cart.find((i) => i.id === productId);
+    const currentQty = existing ? existing.qty : 0;
+    if (product.stock && currentQty + qty > product.stock) {
+      return false;
+    }
     if (existing) {
       existing.qty += qty;
     } else {
       cart.push({ id: productId, qty });
     }
     persist(cart);
+    return true;
   }
 
   function removeFromCart(productId) {
@@ -57,7 +63,13 @@
       cart = cart.filter((i) => i.id !== productId);
     } else {
       const item = cart.find((i) => i.id === productId);
-      if (item) item.qty = qty;
+      if (item) {
+        const product = global.PRODUCTS_BY_ID?.[productId];
+        if (product && product.stock && qty > product.stock) {
+          qty = product.stock;
+        }
+        item.qty = qty;
+      }
     }
     persist(cart);
   }

@@ -34,7 +34,7 @@
             <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
                 href="#categorias">Tênis</a>
             <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
-                href="#categorias">Acesórios</a>
+                href="#categorias">Acessórios</a>
             <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
                 href="#drops">Drops</a>
             <a class="nav-link font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out"
@@ -268,7 +268,6 @@
     </div>
 
     <!-- Motor de dados: catálogo + carrinho -->
-    <script src="assets/js/api.js"></script>
     <script src="assets/js/db.js"></script>
     <script src="assets/js/products.js"></script>
     <script src="assets/js/cart.js"></script>
@@ -279,6 +278,7 @@
         function showCartToast(productName) {
             const toast = document.getElementById('cartToast');
             const text = document.getElementById('cartToastText');
+            if (!toast || !text) return;
             text.textContent = `${productName.toUpperCase()} ADICIONADO AO CARRINHO`;
             toast.classList.remove('translate-y-24', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
@@ -288,20 +288,6 @@
                 toast.classList.remove('translate-y-0', 'opacity-100');
             }, 2200);
         }
-
-        document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const productId = btn.dataset.addToCart;
-                const product = PRODUCTS_BY_ID[productId];
-                if (!product) return;
-                CorreCart.addToCart(productId, 1);
-                showCartToast(product.name);
-                btn.classList.add('scale-125');
-                setTimeout(() => btn.classList.remove('scale-125'), 150);
-            });
-        });
     </script>
 
     <script>
