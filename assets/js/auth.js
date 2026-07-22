@@ -97,10 +97,9 @@ async function handleRegisterSubmit(event) {
         if (result.success) {
             showToast(result.message);
             event.target.reset();
-            if (isStore) {
-                const loginTab = document.getElementById('tab-login');
-                if (loginTab) loginTab.click();
-            }
+            const loginTab = document.getElementById('tab-login');
+            if (loginTab) loginTab.click();
+            if (typeof toggleRegisterType === 'function') toggleRegisterType('user');
         } else {
             showToast(result.message || 'Erro ao realizar cadastro.', 'error');
         }

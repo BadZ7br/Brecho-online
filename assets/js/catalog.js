@@ -1,6 +1,8 @@
 (function (global) {
     'use strict';
 
+    let currentFilter = { search: '', categoryId: null };
+
     function escapeHtml(str) {
         const div = document.createElement('div');
         div.textContent = str || '';
@@ -40,20 +42,45 @@
         return wrapper;
     }
 
+    function getFilteredProducts() {
+        let products = global.PRODUCTS || [];
+        const search = currentFilter.search.trim().toLowerCase();
+        const catId = currentFilter.categoryId;
+
+        if (search) {
+            products = products.filter(p =>
+                (p.name || '').toLowerCase().includes(search) ||
+                (p.description || '').toLowerCase().includes(search)
+            );
+        }
+
+        if (catId != null) {
+            products = products.filter(p => p.categoryId === catId);
+        }
+
+        return products;
+    }
+
     function renderCatalog() {
         const container = document.getElementById('productGrid');
         if (!container) return;
 
-        const products = global.PRODUCTS || [];
+        const products = getFilteredProducts();
         container.innerHTML = '';
 
         if (!products.length) {
-            container.innerHTML = '<p class="font-label-mono text-on-surface-variant">Nenhum produto disponível no momento.</p>';
+            container.innerHTML = '<p class="font-label-mono text-on-surface-variant col-span-full text-center py-8">Nenhum produto encontrado.</p>';
             return;
         }
 
         products.forEach(product => container.appendChild(createProductCard(product)));
         attachAddToCartListeners();
+    }
+
+    function setFilter(opts) {
+        if (opts.search !== undefined) currentFilter.search = opts.search;
+        if (opts.categoryId !== undefined) currentFilter.categoryId = opts.categoryId;
+        renderCatalog();
     }
 
     function attachAddToCartListeners() {
@@ -84,6 +111,7 @@
     }
 
     global.initCatalog = initCatalog;
+    global.setCatalogFilter = setFilter;
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCatalog);

@@ -55,6 +55,8 @@
                     class="hidden absolute -top-2 -right-2 bg-secondary-container text-on-primary font-label-mono px-1.5 py-0.5 text-[10px] rounded-full">0</span>
             </a>
             <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-all duration-300 ease-in-out active:scale-95 hover:scale-110"
+                href="vendedor.html">storefront</a>
+            <a class="material-symbols-outlined text-primary hover:text-secondary-container transition-all duration-300 ease-in-out active:scale-95 hover:scale-110"
                 href="login.html">account_circle</a>
         </div>
     </header>
@@ -90,7 +92,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
                 <!-- Category Card 1 -->
-                <div class="group relative overflow-hidden h-[600px] cursor-pointer">
+                <div class="group relative overflow-hidden h-[600px] cursor-pointer" data-category="OVERSIZED">
                     <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                         data-alt="Um retrato editorial de um modelo usando um moletom gráfico vintage extremamente oversized em uma garagem de concreto dessaturada."
                         style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDgxGdlUDGt9gK11v3C1_TcGRbeqB8BLyzeVeC0zHcdxEmQdoOmoCI696-MsWutZoTxExa10bN0Jt1zLBjiWyMZcmVrv7-xRFl_h9iQpXombAauALpB6AXFIk435qyZPTetAzU61JEtzvKewlUsw6Smks86HxZzi2W9PrnVUFwc24CfZ2-cpw7HgRmnLCO0zH98tfyF-d6R4RNc7j0UqHjGIiwIgsjS00e7LaKaF3qATCX25PS5vdej25NchMZpYH3tWnaHuNS13qua&quot;);">
@@ -104,7 +106,7 @@
                 </div>
 
                 <!-- Category Card 2 -->
-                <div class="group relative overflow-hidden h-[600px] cursor-pointer">
+                <div class="group relative overflow-hidden h-[600px] cursor-pointer" data-category="TÊNIS">
                     <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                         data-alt="Foto aproximada de um par de tênis raros e desgastados com respingos de tinta, sobre sucata metálica industrial."
                         style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuANU1UD7RCtJqtqOJpjOk8zoqJlUuB47dwvnUgug_G-XNGkJPplwToPrTxJ19VR2pPzCGup9HpJycIy8Ji1vdAsAlq70Sci0nBVU0GH91P49TUdcIPDJ_wtopElOejBLd-Cb7egAykwy8W_SMF29sNbyAGAzYWtfagOGFKRDD314Q1A99CmAScSAK9orz0opXbPNJeztzszjawxi8AGJl8YQWzuxO--6sTZUiTUlvAIiH9fMpLWr8r4m3IPk7y5zB-A3Pjbrh1Ps4Jx&quot;);">
@@ -118,7 +120,7 @@
                 </div>
 
                 <!-- Category Card 3 -->
-                <div class="group relative overflow-hidden h-[600px] cursor-pointer">
+                <div class="group relative overflow-hidden h-[600px] cursor-pointer" data-category="ACESSÓRIOS">
                     <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                         data-alt="Uma coleção de bijuterias prateadas chunky e óculos de sol vintage sobre um pedaço de papelão preto rasgado."
                         style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAoYLwibmx6MOA57sWOV3IX7o7W-kg1Hx07Zp1hjJvEooRumX3Diw5xImKZQdA_YPFNDsSh-lLztMkHTdHltGZ54tFOnkeJjSTyxVTEVpgaxJRRW0pFMFggMOyT9E8pvu_oloDYgbs70ZakTAMbM3xfTTvPhxBrJa3WbZ5KEQKb25VrSAQCQ8UsdwFWKzK3Z3mv8a44LaYe2N0DhqRlGTLouGK4rXsA1kiBXz5jqKhoM1J61xKhiJM4KYSQolqomTJ3HZXbfJVvXae9&quot;);">
@@ -393,7 +395,7 @@
             }
         });
 
-        // Animação do input de pesquisa
+        // Animação do input de pesquisa + filtro de busca
         (function () {
             const searchBtn = document.getElementById('searchToggleBtn');
             const searchInput = document.getElementById('animatedSearchInput');
@@ -408,10 +410,22 @@
                     setTimeout(() => searchInput.focus(), 100);
                 } else {
                     searchInput.value = '';
+                    if (typeof setCatalogFilter === 'function') setCatalogFilter({ search: '' });
                 }
             });
 
-            // Em dispositivos com mouse: passar por cima já abre e foca o input
+            searchInput.addEventListener('input', () => {
+                if (typeof setCatalogFilter === 'function') setCatalogFilter({ search: searchInput.value });
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchInput.classList.remove('active');
+                    searchInput.value = '';
+                    if (typeof setCatalogFilter === 'function') setCatalogFilter({ search: '' });
+                }
+            });
+
             if (window.matchMedia('(hover: hover)').matches) {
                 searchWrapper.addEventListener('mouseenter', () => {
                     setTimeout(() => searchInput.focus(), 350);
@@ -423,15 +437,42 @@
                 });
             }
 
-            // Fecha o input ao clicar fora dele
             document.addEventListener('click', (e) => {
                 if (!searchWrapper.contains(e.target)) {
                     searchInput.classList.remove('active');
                 }
             });
 
-            // Impede que o clique dentro do input feche a animação
             searchInput.addEventListener('click', (e) => e.stopPropagation());
+        })();
+
+        // Filtro por categoria (cards de categoria)
+        (function () {
+            const categoryMap = {
+                'OVERSIZED': 2,
+                'TÊNIS': null,
+                'ACESSÓRIOS': 3
+            };
+
+            let activeCategory = null;
+
+            document.querySelectorAll('[data-category]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const name = card.dataset.category;
+
+                    if (activeCategory === name) {
+                        activeCategory = null;
+                        card.classList.remove('ring-2', 'ring-primary');
+                        if (typeof setCatalogFilter === 'function') setCatalogFilter({ categoryId: null });
+                    } else {
+                        activeCategory = name;
+                        document.querySelectorAll('[data-category]').forEach(c => c.classList.remove('ring-2', 'ring-primary'));
+                        card.classList.add('ring-2', 'ring-primary');
+                        const catId = categoryMap[name] ?? null;
+                        if (typeof setCatalogFilter === 'function') setCatalogFilter({ categoryId: catId });
+                    }
+                });
+            });
         })();
     </script>
 </body>

@@ -145,14 +145,14 @@
                                     class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome</label>
                                 <input id="register-user-name"
                                     class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                    type="text" placeholder="Seu nome completo" required>
+                                    type="text" placeholder="Seu nome completo">
                             </div>
                             <div>
                                 <label
                                     class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Tag/Nick</label>
                                 <input id="register-user-nick"
                                     class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                    type="text" placeholder="Seu apelido de usuário" required>
+                                    type="text" placeholder="Seu apelido de usuário">
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                                 class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Nome do Brechó</label>
                             <input id="register-store-name"
                                 class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="text" placeholder="Nome do seu brechó" required>
+                                type="text" placeholder="Nome do seu brechó">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
@@ -183,9 +183,9 @@
                         <div>
                             <label
                                 class="font-label-mono text-label-mono uppercase text-on-surface-variant block mb-2">Cidade / Bairro</label>
-                            <input id="register-store-location"
-                                class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
-                                type="text" placeholder="Onde seu brechó opera">
+                                <input id="register-store-location"
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-4 px-2 font-body-lg text-primary input-focus-accent transition-all"
+                                    type="text" placeholder="Onde seu brechó opera">
                         </div>
                         <div>
                             <label
@@ -286,6 +286,9 @@
 
             if (!userFields || !storeFields) return;
 
+            const userInputEls = userFields.querySelectorAll('input');
+            const storeInputEls = storeFields.querySelectorAll('input');
+
             if (type === 'store') {
                 userFields.classList.add('hidden');
                 storeFields.classList.remove('hidden');
@@ -293,6 +296,8 @@
                 userBtn?.classList.add('text-on-surface-variant');
                 storeBtn?.classList.remove('text-on-surface-variant');
                 storeBtn?.classList.add('text-primary');
+                userInputEls.forEach(el => el.removeAttribute('required'));
+                storeInputEls.forEach(el => el.setAttribute('required', ''));
             } else {
                 userFields.classList.remove('hidden');
                 storeFields.classList.add('hidden');
@@ -300,6 +305,8 @@
                 userBtn?.classList.add('text-primary');
                 storeBtn?.classList.remove('text-primary');
                 storeBtn?.classList.add('text-on-surface-variant');
+                storeInputEls.forEach(el => el.removeAttribute('required'));
+                userInputEls.forEach(el => el.setAttribute('required', ''));
             }
         }
 
@@ -309,6 +316,11 @@
 
             if (userBtn) userBtn.addEventListener('click', () => toggleRegisterType('user'));
             if (storeBtn) storeBtn.addEventListener('click', () => toggleRegisterType('store'));
+
+            const userFields = document.getElementById('register-user-fields');
+            if (userFields) {
+                userFields.querySelectorAll('input').forEach(el => el.setAttribute('required', ''));
+            }
         });
     </script>
     <script src="assets/js/db.js"></script>
